@@ -56,7 +56,7 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
   if (!limeiraData) return <p>Carregando mapa...</p>;
 
   return (
-    <div style={{ height: '100%', width: '100%' }}>
+    <div style={{ height: '800px', width: '100%' }}>
       <MapContainer
         center={focusLat && focusLng ? [focusLat, focusLng] : [-22.5632, -47.4043]} // centro de Limeira-SP
         zoom={focusLat && focusLng ? 16 : 13}
@@ -67,7 +67,7 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
           [-22.45, -47.27],
         ]}
         maxBoundsViscosity={1.0}
-        style={{ height: '100%', width: '100%' }}
+        style={{ height: '800px', width: '100%' }}
         // @ts-ignore
         whenReady={(mapInstance: any) => {}}
       >
@@ -77,17 +77,7 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {/* contorno da cidade */}
-        <GeoJSON
-          data={limeiraData}
-          style={() => ({
-            color: '#FF6600',
-            weight: 2,
-            fillColor: '#FFAA00',
-            fillOpacity: 0.25,
-          })}
-        />
-
+        
         {/* 🔴 bolinhas de alerta de perigo */}
         {alerts.map((alert) => (
           <Circle

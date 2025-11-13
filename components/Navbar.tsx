@@ -26,7 +26,7 @@ export default function Navbar() {
 
         {/* Menu em telas grandes */}
         <div className="hidden md:flex space-x-6">
-          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/dashboard">Mapa</Link>
           <Link href="/dashboard/users">Users</Link>
           <Link href="/dashboard/alerts">Alerts</Link>
           <Link href="/dashboard/lista-alertas">Lista de Alertas</Link>
