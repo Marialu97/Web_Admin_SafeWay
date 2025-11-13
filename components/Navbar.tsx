@@ -30,7 +30,8 @@ export default function Navbar() {
           <Link href="/dashboard/users">Users</Link>
           <Link href="/dashboard/alerts">Alerts</Link>
           <Link href="/dashboard/lista-alertas">Lista de Alertas</Link>
-          <Link href="/dashboard/admin">New Admin</Link>
+          <Link href="/verificar-alertas">Verificação de Alertas</Link>
+          <Link href="/dashboard/admin">Novo Admin</Link>
           {/* Botão de logout */}
           <button onClick={handleLogout} className="text-white">Sair</button> {/* Chama a função de logout */}
         </div>

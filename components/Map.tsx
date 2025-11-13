@@ -7,9 +7,18 @@ import { collection, onSnapshot } from 'firebase/firestore';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
+interface Alert {
+  id: string;
+  street: string;
+  description: string;
+  latitude: number;
+  longitude: number;
+  color: string;
+}
+
 export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number; focusLng?: number }) {
   const [limeiraData, setLimeiraData] = useState<any>(null);
-  const [alerts, setAlerts] = useState<any[]>([]);
+  const [alerts, setAlerts] = useState<Alert[]>([]);
 
   // 🔹 Corrige os ícones padrão do Leaflet e carrega o GeoJSON
   useEffect(() => {
@@ -35,21 +44,22 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
   // 🔹 Busca os alertas cadastrados no Firestore com real-time updates
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'alerts'), (snapshot) => {
-      const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      const data = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as Alert[];
       setAlerts(data);
     });
     return unsubscribe; // Cleanup listener on unmount
   }, []);
-
-
 
   if (!limeiraData) return <p>Carregando mapa...</p>;
 
   return (
     <div style={{ height: '100%', width: '100%' }}>
       <MapContainer
-        center={focusLat && focusLng ? [focusLat, focusLng] : [-22.565, -47.401]} // centro urbano de Limeira ou foco no alerta
-        zoom={focusLat && focusLng ? 16 : 14.5}
+        center={focusLat && focusLng ? [focusLat, focusLng] : [-22.5632, -47.4043]} // centro de Limeira-SP
+        zoom={focusLat && focusLng ? 16 : 13}
         minZoom={13}
         maxZoom={18}
         maxBounds={[
@@ -82,16 +92,16 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
         {alerts.map((alert) => (
           <Circle
             key={alert.id}
-            center={[alert.lat, alert.lng]} // Usando `lat` e `lng` do Firestore
+            center={[alert.latitude, alert.longitude]} // Usando `latitude` e `longitude` do Firestore
             radius={50} // tamanho do círculo
-            color={alert.cor || 'red'} // A cor pode ser `alert.cor` ou vermelho por padrão
-            fillColor={alert.cor || 'red'}
+            color={alert.color || 'red'} // A cor pode ser `alert.color` ou vermelho por padrão
+            fillColor={alert.color || 'red'}
             fillOpacity={0.6}
           >
             <Popup>
-              <strong>Rua:</strong> {alert.rua} <br />
-              <strong>Perigo:</strong> {alert.descricao} <br />
-              <strong>Cor:</strong> {alert.cor}
+              <strong>Rua:</strong> {alert.street} <br />
+              <strong>Perigo:</strong> {alert.description} <br />
+              <strong>Cor:</strong> {alert.color}
             </Popup>
           </Circle>
         ))}
