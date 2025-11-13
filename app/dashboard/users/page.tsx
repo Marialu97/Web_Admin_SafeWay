@@ -15,13 +15,33 @@ export default function UsersPage() {
   }, []);
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">Usuários</h1>
-      <ul className="space-y-2">
-        {users.map(user => (
-          <li key={user.id} className="bg-white p-2 rounded shadow">{user.email}</li>
-        ))}
-      </ul>
+    <div className="p-8 bg-gray-100 min-h-screen">
+      <h1 className="text-3xl font-bold mb-6 text-gray-800 text-center">Usuários</h1>
+      <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+        <table className="min-w-full border border-gray-200">
+          <thead className="bg-blue-600 text-white">
+            <tr>
+              <th className="py-3 px-4 border-b">ID</th>
+              <th className="py-3 px-4 border-b">Email</th>
+              <th className="py-3 px-4 border-b">Nome</th>
+              <th className="py-3 px-4 border-b">Data de Ingresso</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map(user => (
+              <tr key={user.id} className="hover:bg-gray-100">
+                <td className="py-2 px-4 border-b">{user.id}</td>
+                <td className="py-2 px-4 border-b">{user.email}</td>
+                <td className="py-2 px-4 border-b">{user.name || 'N/A'}</td>
+                <td className="py-2 px-4 border-b">{user.createdAt?.toDate()?.toLocaleString() || 'N/A'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {users.length === 0 && (
+          <p className="text-center py-4 text-gray-500">Nenhum usuário encontrado.</p>
+        )}
+      </div>
     </div>
   );
 }

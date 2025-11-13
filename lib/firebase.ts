@@ -5,12 +5,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  apiKey: "AIzaSyAykEbRJWi-RZTn3afIJnczkYoU7oh3fWE",
+  authDomain: "safeway-dev-8542d.firebaseapp.com",
+  projectId: "safeway-dev-8542d",
+  storageBucket: "safeway-dev-8542d.firebasestorage.app",
+  messagingSenderId: "666685520949",
+  appId: "1:666685520949:web:6872e05e2ff94299e8c57c",
+  measurementId: "G-BL3992JTHB"
 };
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
