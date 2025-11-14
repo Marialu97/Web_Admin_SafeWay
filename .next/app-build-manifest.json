@@ -16,10 +16,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/dashboard/page.js"
     ],
+    "/dashboard/users/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/users/page.js"
+    ],
     "/dashboard/alerts/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/dashboard/alerts/page.js"
+    ],
+    "/dashboard/lista-alertas/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/lista-alertas/page.js"
     ],
     "/verificar-alertas/page": [
       "static/chunks/webpack.js",
@@ -27,10 +37,10 @@
       "static/css/app/verificar-alertas/page.css",
       "static/chunks/app/verificar-alertas/page.js"
     ],
-    "/dashboard/lista-alertas/page": [
+    "/dashboard/admin/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/lista-alertas/page.js"
+      "static/chunks/app/dashboard/admin/page.js"
     ]
   }
 }
