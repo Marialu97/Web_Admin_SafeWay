@@ -1,0 +1,8 @@
+{
+  "hosting": {
+    "source": "apps/next",
+    "frameworksBackend": {
+      "region": "us-central1"
+    }
+  }
+}
