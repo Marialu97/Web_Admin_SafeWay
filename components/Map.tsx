@@ -81,6 +81,7 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
           [-22.45, -47.27],
         ]}
         maxBoundsViscosity={1.0}
+        doubleClickZoom={false}
         style={{ height: '800px', width: '100%' }}
       >
         <TileLayer
