@@ -169,3 +169,5 @@ const AddAlert = () => {
 };
 
 export default AddAlert;
+export const dynamic = "force-dynamic";
+

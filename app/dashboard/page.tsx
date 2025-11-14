@@ -1,11 +1,14 @@
 "use client";
-import dynamic from "next/dynamic";
+
+import dynamicImport from "next/dynamic";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../lib/firebase";
 import { useSearchParams } from "next/navigation";
 
-const Map = dynamic(() => import("../../components/Map"), { ssr: false });
+export const dynamic = "force-dynamic";
+
+const Map = dynamicImport(() => import("../../components/Map"), { ssr: false });
 
 export default function Dashboard() {
   const [userCount, setUserCount] = useState(0);
@@ -32,4 +35,10 @@ export default function Dashboard() {
       </div>
     </div>
   );
+  
 }
+
+
+
+
+
