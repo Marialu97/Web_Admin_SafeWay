@@ -11,11 +11,11 @@ import MarkerClusterGroup from 'react-leaflet-cluster';
 
 interface Alert {
   id: string;
-  street: string;
-  description: string;
+  titulo: string;
+  descricao: string;
   latitude: number;
   longitude: number;
-  color: string;
+  nivelRisco: string;
 }
 
 function MapClickHandler() {
@@ -123,14 +123,14 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
               key={alert.id}
               center={[alert.latitude, alert.longitude]}
               radius={50}
-              color={alert.color || 'red'}
-              fillColor={alert.color || 'red'}
+              color={alert.nivelRisco || 'red'}
+              fillColor={alert.nivelRisco || 'red'}
               fillOpacity={0.6}
             >
               <Popup>
-                <strong>Rua:</strong> {alert.street} <br />
-                <strong>Perigo:</strong> {alert.description} <br />
-                <strong>Cor:</strong> {alert.color}
+                <strong>Título do Alerta:</strong> {alert.titulo || 'Sem título'} <br />
+                <strong>Descrição:</strong> {alert.descricao || 'Sem descrição'} <br />
+                <strong>Nível de Risco:</strong> {alert.nivelRisco === 'red' ? 'Alto' : alert.nivelRisco === 'yellow' ? 'Médio' : alert.nivelRisco === 'green' ? 'Baixo' : 'Não informado'}
               </Popup>
             </Circle>
           ))}

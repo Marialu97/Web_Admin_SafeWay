@@ -11,13 +11,12 @@ const Popup = dynamic(() => import('react-leaflet').then(mod => mod.Popup), { ss
 
 interface Alert {
   id: string;
-  name: string;
-  street: string;
-  description: string;
+  titulo: string;
+  descricao: string;
   latitude: number;
   longitude: number;
-  color: string;
-  timestamp: Date;
+  nivelRisco: string;
+  createdAt: Date;
 }
 
 interface AlertMapProps {
@@ -69,14 +68,16 @@ export default function AlertMap({ alerts, center }: AlertMapProps) {
               key={alert.id}
               center={[alert.latitude, alert.longitude]}
               radius={50}
-              color={alert.color || 'red'}
-              fillColor={alert.color || 'red'}
+              color={alert.nivelRisco || 'red'}
+              fillColor={alert.nivelRisco || 'red'}
               fillOpacity={0.6}
             >
               <Popup>
-                <strong>Rua:</strong> {alert.street} <br />
-                <strong>Descrição:</strong> {alert.description} <br />
-                <strong>Data:</strong> {alert.timestamp.toLocaleString()}
+                <strong>Título do Alerta:</strong> {alert.titulo || 'Sem título'} <br />
+                <strong>Descrição:</strong> {alert.descricao || 'Sem descrição'} <br />
+                <strong>Nível de Risco:</strong> {alert.nivelRisco === 'red' ? 'Alto' : alert.nivelRisco === 'yellow' ? 'Médio' : alert.nivelRisco === 'green' ? 'Baixo' : 'Não informado'} <br />
+                <strong>Latitude:</strong> {alert.latitude} <br />
+                <strong>Longitude:</strong> {alert.longitude}
               </Popup>
             </Circle>
           ))}

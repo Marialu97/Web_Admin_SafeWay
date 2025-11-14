@@ -8,13 +8,12 @@ import AlertMap from "@/components/AlertMap";
 
 interface Alert {
   id: string;
-  name: string;
-  street: string;
-  description: string;
+  titulo: string;
+  descricao: string;
   latitude: number;
   longitude: number;
-  color: string;
-  timestamp: Date;
+  nivelRisco: string;
+  createdAt: Date;
 }
 
 export default function VerificarAlertasPage() {
@@ -29,7 +28,7 @@ export default function VerificarAlertasPage() {
     const data = querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
-      timestamp: doc.data().timestamp?.toDate() || new Date(),
+      createdAt: doc.data().createdAt?.toDate() || new Date(),
     })) as Alert[];
     setAlerts(data);
     setFilteredAlerts(data);
@@ -44,12 +43,12 @@ export default function VerificarAlertasPage() {
     if (searchTerm) {
       filtered = filtered.filter(
         (alert) =>
-          alert.street.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          alert.description.toLowerCase().includes(searchTerm.toLowerCase())
+          alert.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          alert.descricao.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
     if (colorFilter) {
-      filtered = filtered.filter((alert) => alert.color === colorFilter);
+      filtered = filtered.filter((alert) => alert.nivelRisco === colorFilter);
     }
     setFilteredAlerts(filtered);
   }, [searchTerm, colorFilter, alerts]);
@@ -62,8 +61,8 @@ export default function VerificarAlertasPage() {
     }
   };
 
-  const handleViewOnMap = (lat: number, lng: number) => {
-    setMapCenter([lat, lng]);
+  const handleViewOnMap = (latitude: number, longitude: number) => {
+    setMapCenter([latitude, longitude]);
   };
 
   return (
@@ -75,7 +74,7 @@ export default function VerificarAlertasPage() {
       <div className="mb-6 flex flex-wrap gap-4 items-center">
         <input
           type="text"
-          placeholder="Buscar por rua ou descrição"
+          placeholder="Buscar por título ou descrição"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="border border-gray-300 p-2 rounded flex-1 min-w-64"
@@ -85,10 +84,10 @@ export default function VerificarAlertasPage() {
           onChange={(e) => setColorFilter(e.target.value)}
           className="border border-gray-300 p-2 rounded"
         >
-          <option value="">Todas as cores</option>
-          <option value="red">Vermelho</option>
-          <option value="yellow">Amarelo</option>
-          <option value="green">Verde</option>
+          <option value="">Todos os níveis de risco</option>
+          <option value="red">Alto</option>
+          <option value="yellow">Médio</option>
+          <option value="green">Baixo</option>
         </select>
         <button
           onClick={fetchAlerts}
@@ -106,6 +105,10 @@ export default function VerificarAlertasPage() {
           alerts={filteredAlerts}
           onDelete={handleDelete}
           onViewOnMap={handleViewOnMap}
+          showRiskLevel={false}
+          showLatitude={false}
+          showLongitude={false}
+          smallButtons={true}
         />
         <AlertMap alerts={filteredAlerts} center={mapCenter as [number, number]} />
       </div>

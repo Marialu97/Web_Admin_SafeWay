@@ -4,18 +4,17 @@ import { useState } from 'react';
 import { addAlert } from '@/lib/firestore'; // Função para adicionar o alerta ao Firestore
 
 const AddAlert = () => {
-  const [name, setName] = useState('');
-  const [street, setStreet] = useState('');
-  const [description, setDescription] = useState('');
+  const [titulo, setTitulo] = useState('');
+  const [descricao, setDescricao] = useState('');
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
-  const [color, setColor] = useState('red');
+  const [nivelRisco, setNivelRisco] = useState('red');
   const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!latitude || !longitude || !street || !description) {
+    if (!latitude || !longitude || !titulo || !descricao) {
       setError('Todos os campos são obrigatórios!');
       return;
     }
@@ -23,22 +22,21 @@ const AddAlert = () => {
     try {
       // Chama a função para adicionar o alerta no Firestore
       await addAlert({
-        name,
-        street,
-        description,
+        titulo,
+        descricao,
+        nivelRisco,
         latitude: parseFloat(latitude),
         longitude: parseFloat(longitude),
-        color,
+        createdAt: new Date(),
       });
 
       alert('Alerta cadastrado com sucesso!');
       // Limpa os campos do formulário
-      setName('');
-      setStreet('');
-      setDescription('');
+      setTitulo('');
+      setDescricao('');
       setLatitude('');
       setLongitude('');
-      setColor('red');
+      setNivelRisco('red');
     } catch (error) {
       setError('Erro ao cadastrar alerta');
     }
@@ -47,23 +45,23 @@ const AddAlert = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="street">Nome da Rua</label>
+        <label htmlFor="titulo">Título do Alerta</label>
         <input
           type="text"
-          id="street"
-          value={street}
-          onChange={(e) => setStreet(e.target.value)}
+          id="titulo"
+          value={titulo}
+          onChange={(e) => setTitulo(e.target.value)}
           className="border p-2"
         />
       </div>
 
       <div>
-        <label htmlFor="description">Descrição do Perigo</label>
+        <label htmlFor="descricao">Descrição do Perigo</label>
         <input
           type="text"
-          id="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          id="descricao"
+          value={descricao}
+          onChange={(e) => setDescricao(e.target.value)}
           className="border p-2"
         />
       </div>
@@ -91,16 +89,16 @@ const AddAlert = () => {
       </div>
 
       <div>
-        <label htmlFor="color">Cor do Marcador</label>
+        <label htmlFor="nivelRisco">Nível de Risco</label>
         <select
-          id="color"
-          value={color}
-          onChange={(e) => setColor(e.target.value)}
+          id="nivelRisco"
+          value={nivelRisco}
+          onChange={(e) => setNivelRisco(e.target.value)}
           className="border p-2"
         >
-          <option value="red">Vermelho</option>
-          <option value="yellow">Amarelo</option>
-          <option value="green">Verde</option>
+          <option value="red">Alto</option>
+          <option value="yellow">Médio</option>
+          <option value="green">Baixo</option>
         </select>
       </div>
 

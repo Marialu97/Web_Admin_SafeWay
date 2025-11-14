@@ -7,11 +7,12 @@ import { useRouter } from "next/navigation";
 
 interface Alert {
   id: string;
-  street: string;
-  description: string;
+  titulo: string;
+  descricao: string;
   latitude: number;
   longitude: number;
-  color: string;
+  nivelRisco: string;
+  createdAt: Date;
 }
 
 export default function ListaAlertasPage() {
@@ -24,6 +25,7 @@ export default function ListaAlertasPage() {
       const data = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
+        createdAt: doc.data().createdAt?.toDate() || new Date(),
       })) as Alert[];
       setAlerts(data);
     });
@@ -70,9 +72,9 @@ export default function ListaAlertasPage() {
         <table className="min-w-full border border-gray-200">
           <thead className="bg-blue-600 text-white">
             <tr>
-              <th className="py-3 px-4 border-b">Rua</th>
+              <th className="py-3 px-4 border-b">Título do Alerta</th>
               <th className="py-3 px-4 border-b">Descrição</th>
-              <th className="py-3 px-4 border-b">Cor</th>
+              <th className="py-3 px-4 border-b">Nível de Risco</th>
               <th className="py-3 px-4 border-b">Latitude</th>
               <th className="py-3 px-4 border-b">Longitude</th>
               <th className="py-3 px-4 border-b text-center">Ações</th>
@@ -87,28 +89,28 @@ export default function ListaAlertasPage() {
                     <td className="py-2 px-4 border-b">
                       <input
                         type="text"
-                        value={editingAlert.street}
-                        onChange={(e) => setEditingAlert({ ...editingAlert, street: e.target.value })}
+                        value={editingAlert.titulo}
+                        onChange={(e) => setEditingAlert({ ...editingAlert, titulo: e.target.value })}
                         className="border border-gray-300 rounded px-2 py-1 w-full"
                       />
                     </td>
                     <td className="py-2 px-4 border-b">
                       <input
                         type="text"
-                        value={editingAlert.description}
-                        onChange={(e) => setEditingAlert({ ...editingAlert, description: e.target.value })}
+                        value={editingAlert.descricao}
+                        onChange={(e) => setEditingAlert({ ...editingAlert, descricao: e.target.value })}
                         className="border border-gray-300 rounded px-2 py-1 w-full"
                       />
                     </td>
                     <td className="py-2 px-4 border-b">
                       <select
-                        value={editingAlert.color}
-                        onChange={(e) => setEditingAlert({ ...editingAlert, color: e.target.value })}
+                        value={editingAlert.nivelRisco}
+                        onChange={(e) => setEditingAlert({ ...editingAlert, nivelRisco: e.target.value })}
                         className="border border-gray-300 rounded px-2 py-1 w-full"
                       >
-                        <option value="red">Vermelho</option>
-                        <option value="yellow">Amarelo</option>
-                        <option value="green">Verde</option>
+                        <option value="red">Alto</option>
+                        <option value="yellow">Médio</option>
+                        <option value="green">Baixo</option>
                       </select>
                     </td>
                     <td className="py-2 px-4 border-b">
@@ -146,17 +148,17 @@ export default function ListaAlertasPage() {
                   </>
                 ) : (
                   <>
-                    <td className="py-2 px-4 border-b">{alert.street}</td>
-                    <td className="py-2 px-4 border-b">{alert.description}</td>
+                    <td className="py-2 px-4 border-b">{alert.titulo || 'Sem título'}</td>
+                    <td className="py-2 px-4 border-b">{alert.descricao || 'Sem descrição'}</td>
                     <td className="py-2 px-4 border-b">
                       <span
                         className="inline-block w-4 h-4 rounded-full mr-2"
-                        style={{ backgroundColor: alert.color }}
+                        style={{ backgroundColor: alert.nivelRisco }}
                       ></span>
-                      {alert.color}
+                      {alert.nivelRisco === 'red' ? 'Alto' : alert.nivelRisco === 'yellow' ? 'Médio' : alert.nivelRisco === 'green' ? 'Baixo' : 'Não informado'}
                     </td>
-                    <td className="py-2 px-4 border-b">{alert.latitude}</td>
-                    <td className="py-2 px-4 border-b">{alert.longitude}</td>
+                    <td className="py-2 px-4 border-b">{alert.latitude || 'N/A'}</td>
+                    <td className="py-2 px-4 border-b">{alert.longitude || 'N/A'}</td>
                     <td className="py-2 px-4 border-b text-center space-x-2">
                       {/* ✏️ editar */}
                       <button
