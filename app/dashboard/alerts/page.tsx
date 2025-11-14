@@ -1,3 +1,6 @@
+"use client";
+
+
 import { Suspense } from "react";
 import AddAlertPage from "./AddAlertPage";
 
