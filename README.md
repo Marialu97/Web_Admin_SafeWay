@@ -1,54 +1,128 @@
-erro em salvar as informacao 
+# 🧭 WebSafe – Cadastro de Alertas
+
+Um sistema web desenvolvido com **Next.js** e **Firebase** para cadastrar e gerenciar alertas de segurança em **Limeira-SP**.  
+O projeto permite registrar ocorrências como enchentes, quedas de energia, acidentes e outros tipos de perigo, com localização e nível de risco.
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+- **Next.js (React)** — Framework para a interface web  
+- **Firebase Firestore** — Banco de dados em nuvem  
+- **TailwindCSS** — Estilização moderna e responsiva  
+- **TypeScript** — Tipagem segura para o código  
+
+---
+
+## 📋 Funcionalidades
+
+- 🧩 Cadastro de alertas com título, descrição e tipo  
+- ⚠️ Definição do **nível de risco** (baixo, médio, alto, crítico)  
+- 📍 Inserção de **latitude e longitude** (ex: coordenadas de Limeira-SP)  
+- 👤 Identificação do usuário que cadastrou o alerta  
+- 💾 Armazenamento automático dos dados no **Firebase Firestore**
+
+---
+
+## 🧑‍💻 Estrutura Principal
+
+# 🧭 WebSafe – Cadastro de Alertas
+
+Um sistema web desenvolvido com **Next.js** e **Firebase** para cadastrar e gerenciar alertas de segurança em **Limeira-SP**.  
+O projeto permite registrar ocorrências como enchentes, quedas de energia, acidentes e outros tipos de perigo, com localização e nível de risco.
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+- **Next.js (React)** — Framework para a interface web  
+- **Firebase Firestore** — Banco de dados em nuvem  
+- **TailwindCSS** — Estilização moderna e responsiva  
+- **TypeScript** — Tipagem segura para o código  
+
+---
+
+## 📋 Funcionalidades
+
+- 🧩 Cadastro de alertas com título, descrição e tipo  
+- ⚠️ Definição do **nível de risco** (baixo, médio, alto, crítico)  
+- 📍 Inserção de **latitude e longitude** (ex: coordenadas de Limeira-SP)  
+- 👤 Identificação do usuário que cadastrou o alerta  
+- 💾 Armazenamento automático dos dados no **Firebase Firestore**
+
+---
+
+## 🧑‍💻 Estrutura Principal
+
+# 🧭 WebSafe – Cadastro de Alertas
+
+Um sistema web desenvolvido com **Next.js** e **Firebase** para cadastrar e gerenciar alertas de segurança em **Limeira-SP**.  
+O projeto permite registrar ocorrências como enchentes, quedas de energia, acidentes e outros tipos de perigo, com localização e nível de risco.
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+- **Next.js (React)** — Framework para a interface web  
+- **Firebase Firestore** — Banco de dados em nuvem  
+- **TailwindCSS** — Estilização moderna e responsiva  
+- **TypeScript** — Tipagem segura para o código  
+
+---
+
+## 📋 Funcionalidades
+
+- 🧩 Cadastro de alertas com título, descrição e tipo  
+- ⚠️ Definição do **nível de risco** (baixo, médio, alto, crítico)  
+- 📍 Inserção de **latitude e longitude** (ex: coordenadas de Limeira-SP)  
+- 👤 Identificação do usuário que cadastrou o alerta  
+- 💾 Armazenamento automático dos dados no **Firebase Firestore**
+
+---
+
+## 🧑‍💻 Estrutura Principal
+
+📦 websafe/
+┣ 📂 app/
+┃ ┗ 📜 AddAlert.tsx # Tela de cadastro de alerta
+┣ 📂 lib/
+┃ ┗ 📜 firestore.ts # Funções de integração com Firebase
+┣ 📜 firebaseConfig.js # Configuração do Firebase
+┗ 📜 README.md
 
 
+---
 
+## ⚙️ Como Executar o Projeto
 
-
-# Admin Panel
-
-A Next.js 14 admin panel with Firebase Authentication and Firestore, featuring a dashboard with map, user management, alerts, and admin registration.
-
-## Features
-
-- Admin login using Firebase Authentication
-- Dashboard with Leaflet map displaying geolocated alerts
-- User management (list users)
-- Alerts validation (approve/reject)
-- Admin registration
-- Logout functionality
-- Responsive design with TailwindCSS
-
-## Getting Started
-
-1. Install dependencies:
+1. **Clone o repositório:**
    ```bash
-   npm install
-   ```
+   git clone https://github.com/seuusuario/websafe.git
+   cd websafe
 
-2. Set up Firebase:
-   - Create a Firebase project
-   - Enable Authentication and Firestore
-   - Copy your Firebase config to `.env.local`
+npm install
 
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
+Crie um projeto no Firebase Console
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+Copie as credenciais e cole em firebaseConfig.js
 
-## Project Structure
+npm run dev
 
-- `app/`: Next.js App Router pages
-- `components/`: Reusable React components
-- `lib/`: Firebase and auth utilities
-- `styles/`: Global styles
-- `public/`: Static assets
+👉 http://localhost:3000
 
-## Technologies Used
+🌍 Exemplo de Alerta (Limeira-SP)
+Campo	Exemplo
+Título	Deslizamento próximo ao Jardim Aeroporto
+Descrição	Parte da rua interditada devido à chuva
+Tipo	Enchente
+Risco	Alto
+Latitude	-22.5639
+Longitude	-47.4017
+📌 Próximos Passos
 
-- Next.js 14 (App Router)
-- TypeScript
-- TailwindCSS
-- Firebase (Authentication & Firestore)
-- Leaflet (Map)
+Exibir alertas em mapa interativo
+
+Sistema de login para usuários
+
+Filtros por tipo e nível de risco
+

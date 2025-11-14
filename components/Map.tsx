@@ -1,11 +1,13 @@
 'use client';
 
-import { MapContainer, TileLayer, GeoJSON, Circle, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, GeoJSON, Circle, Popup, useMapEvents } from 'react-leaflet';
 import { useEffect, useState } from 'react';
 import { db } from '@/lib/firebase';
 import { collection, onSnapshot } from 'firebase/firestore';
 import L from 'leaflet';
+import { useRouter } from 'next/navigation'; // ✅ Importa roteador do Next.js
 import 'leaflet/dist/leaflet.css';
+import MarkerClusterGroup from 'react-leaflet-cluster';
 
 interface Alert {
   id: string;
@@ -16,11 +18,25 @@ interface Alert {
   color: string;
 }
 
+function MapClickHandler() {
+  const router = useRouter();
+
+  // Captura o duplo clique no mapa
+  useMapEvents({
+    dblclick(e) {
+      const { lat, lng } = e.latlng;
+      // Redireciona para a página de cadastro com os valores na URL
+      router.push(`/dashboard/alerts?lat=${lat}&lng=${lng}`);
+    },
+  });
+
+  return null;
+}
+
 export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number; focusLng?: number }) {
   const [limeiraData, setLimeiraData] = useState<any>(null);
   const [alerts, setAlerts] = useState<Alert[]>([]);
 
-  // 🔹 Corrige os ícones padrão do Leaflet e carrega o GeoJSON
   useEffect(() => {
     if (typeof window !== 'undefined') {
       // @ts-ignore
@@ -35,13 +51,11 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
       });
     }
 
-    // Carrega o arquivo GeoJSON da cidade de Limeira
     fetch('/limeira.geojson')
       .then((res) => res.json())
       .then((data) => setLimeiraData(data));
   }, []);
 
-  // 🔹 Busca os alertas cadastrados no Firestore com real-time updates
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'alerts'), (snapshot) => {
       const data = snapshot.docs.map((doc) => ({
@@ -50,7 +64,7 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
       })) as Alert[];
       setAlerts(data);
     });
-    return unsubscribe; // Cleanup listener on unmount
+    return unsubscribe;
   }, []);
 
   if (!limeiraData) return <p>Carregando mapa...</p>;
@@ -58,7 +72,7 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
   return (
     <div style={{ height: '800px', width: '100%' }}>
       <MapContainer
-        center={focusLat && focusLng ? [focusLat, focusLng] : [-22.5632, -47.4043]} // centro de Limeira-SP
+        center={focusLat && focusLng ? [focusLat, focusLng] : [-22.5632, -47.4043]}
         zoom={focusLat && focusLng ? 16 : 13}
         minZoom={13}
         maxZoom={18}
@@ -68,33 +82,59 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
         ]}
         maxBoundsViscosity={1.0}
         style={{ height: '800px', width: '100%' }}
-        // @ts-ignore
-        whenReady={(mapInstance: any) => {}}
       >
-        {/* camada base do mapa */}
         <TileLayer
           attribution='© <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        
-        {/* 🔴 bolinhas de alerta de perigo */}
-        {alerts.map((alert) => (
-          <Circle
-            key={alert.id}
-            center={[alert.latitude, alert.longitude]} // Usando `latitude` e `longitude` do Firestore
-            radius={50} // tamanho do círculo
-            color={alert.color || 'red'} // A cor pode ser `alert.color` ou vermelho por padrão
-            fillColor={alert.color || 'red'}
-            fillOpacity={0.6}
-          >
-            <Popup>
-              <strong>Rua:</strong> {alert.street} <br />
-              <strong>Perigo:</strong> {alert.description} <br />
-              <strong>Cor:</strong> {alert.color}
-            </Popup>
-          </Circle>
-        ))}
+        {/* ✅ Captura duplo clique */}
+        <MapClickHandler />
+
+        <MarkerClusterGroup
+          chunkedLoading
+          spiderfyOnMaxZoom={false}
+          showCoverageOnHover={false}
+          maxClusterRadius={50}
+          iconCreateFunction={(cluster: { getChildCount: () => any; }) => {
+            const count = cluster.getChildCount();
+            let color = 'rgba(255, 0, 0, 0.6)';
+            if (count < 5) color = 'rgba(255, 165, 0, 0.6)';
+            if (count >= 5) color = 'rgba(255, 0, 0, 0.6)';
+            return L.divIcon({
+              html: `<div style="
+                background:${color};
+                border-radius:50%;
+                width:40px;
+                height:40px;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                color:white;
+                font-weight:bold;
+                border:2px solid white;
+              ">${count}</div>`,
+              className: 'cluster-icon',
+            });
+          }}
+        >
+          {alerts.map((alert) => (
+            <Circle
+              key={alert.id}
+              center={[alert.latitude, alert.longitude]}
+              radius={50}
+              color={alert.color || 'red'}
+              fillColor={alert.color || 'red'}
+              fillOpacity={0.6}
+            >
+              <Popup>
+                <strong>Rua:</strong> {alert.street} <br />
+                <strong>Perigo:</strong> {alert.description} <br />
+                <strong>Cor:</strong> {alert.color}
+              </Popup>
+            </Circle>
+          ))}
+        </MarkerClusterGroup>
       </MapContainer>
     </div>
   );

@@ -1209,6 +1209,9 @@ video {
 .min-h-screen {
   min-height: 100vh;
 }
+.w-1\/2 {
+  width: 50%;
+}
 .w-4 {
   width: 1rem;
 }
@@ -1256,6 +1259,9 @@ video {
 }
 .justify-between {
   justify-content: space-between;
+}
+.gap-2 {
+  gap: 0.5rem;
 }
 .gap-4 {
   gap: 1rem;
