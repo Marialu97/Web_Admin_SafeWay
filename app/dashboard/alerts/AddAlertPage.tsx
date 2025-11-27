@@ -98,20 +98,27 @@ const AddAlertPage = () => {
           value={tipo}
           onChange={(e) => setTipo(e.target.value)}
           className="border p-2 w-full rounded"
+          required
         >
-          <option value="outro">Outro</option>
-          <option value="acidente">Acidente</option>
-          <option value="enchente">Enchente</option>
+          <option value="outro">Ocorrência</option>
+          <option value="roubo">Roubo</option>
+          <option value="furto">Furto</option>
+          <option value="sequestro">Sequestro</option>
+          <option value="assedio">Assédio</option>
+          <option value="acidentes">Acidentes</option>
+          <option value="estupro">Estupro</option>
+           <option value="alagamento">Alagamento</option>
           <option value="queda-de-energia">Queda de Energia</option>
         </select>
       </div>
 
       <div>
         <label className="block font-semibold mb-1">Nível de Risco</label>
-        <select
+         <select
           value={risco}
           onChange={(e) => setRisco(e.target.value)}
           className="border p-2 w-full rounded"
+          required
         >
           <option value="baixo">Baixo</option>
           <option value="medio">Médio</option>
