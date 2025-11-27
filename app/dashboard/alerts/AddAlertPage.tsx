@@ -14,7 +14,7 @@ const AddAlertPage = () => {
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
   const [tipo, setTipo] = useState('outro');
-  const [risco, setRisco] = useState('medio');
+  const [risco, setRisco] = useState('Médio');
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [userId, setUserId] = useState('');
@@ -40,7 +40,7 @@ const AddAlertPage = () => {
         titulo,
         descricao,
         tipo,
-        risco,
+        nivelRisco: risco,
         latitude: parseFloat(latitude),
         longitude: parseFloat(longitude),
         userId,
@@ -54,7 +54,7 @@ const AddAlertPage = () => {
       setTitulo('');
       setDescricao('');
       setTipo('outro');
-      setRisco('medio');
+      setRisco('Médio');
       setLatitude('');
       setLongitude('');
       setUserId('');
@@ -98,7 +98,6 @@ const AddAlertPage = () => {
           value={tipo}
           onChange={(e) => setTipo(e.target.value)}
           className="border p-2 w-full rounded"
-          required
         >
           <option value="outro">Ocorrência</option>
           <option value="roubo">Roubo</option>
@@ -114,16 +113,15 @@ const AddAlertPage = () => {
 
       <div>
         <label className="block font-semibold mb-1">Nível de Risco</label>
-         <select
+        <select
           value={risco}
           onChange={(e) => setRisco(e.target.value)}
           className="border p-2 w-full rounded"
-          required
         >
-          <option value="baixo">Baixo</option>
-          <option value="medio">Médio</option>
-          <option value="alto">Alto</option>
-          <option value="critico">Crítico</option>
+          <option value="Baixo">Baixo</option>
+          <option value="Médio">Médio</option>
+          <option value="Alto">Alto</option>
+          <option value="Crítico">Crítico</option>
         </select>
       </div>
 
@@ -152,18 +150,7 @@ const AddAlertPage = () => {
           />
         </div>
       </div>
-
-      <div>
-        <label className="block font-semibold mb-1">ID do Usuário</label>
-        <input
-          type="text"
-          value={userId}
-          onChange={(e) => setUserId(e.target.value)}
-          className="border p-2 w-full rounded"
-          placeholder="Ex: g7KJvz2mgzZyGALrENXnTWsswm82"
-        />
-      </div>
-
+      
       {error && <p className="text-red-500">{error}</p>}
 
       <button

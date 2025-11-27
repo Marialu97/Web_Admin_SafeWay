@@ -25,6 +25,26 @@ interface AlertListProps {
 export default function AlertList({ alerts, onDelete, onViewOnMap, showRiskLevel = true, showLatitude = true, showLongitude = true, smallButtons = false }: AlertListProps) {
   const [editingAlert, setEditingAlert] = useState<Alert | null>(null);
 
+  const getRiskDisplay = (nivelRisco: string) => {
+    const colorToText: Record<string, string> = {
+      'red': 'Crítico',
+      'orange': 'Alto',
+      'yellow': 'Médio',
+      'green': 'Baixo'
+    };
+    const textToColor: Record<string, string> = {
+      'Crítico': 'red',
+      'Alto': 'orange',
+      'Médio': 'yellow',
+      'Baixo': 'green'
+    };
+    const text = colorToText[nivelRisco] || nivelRisco;
+    const color = textToColor[text] || textToColor[nivelRisco] || 'gray';
+    return { text, color };
+  };
+
+
+
   const handleEdit = (alert: Alert) => {
     setEditingAlert(alert);
   };
@@ -82,9 +102,10 @@ export default function AlertList({ alerts, onDelete, onViewOnMap, showRiskLevel
                           onChange={(e) => setEditingAlert({ ...editingAlert, nivelRisco: e.target.value })}
                           className="border border-gray-300 rounded px-2 py-1 w-full"
                         >
-                          <option value="red">Alto</option>
-                          <option value="yellow">Médio</option>
-                          <option value="green">Baixo</option>
+                          <option value="Alto">Alto</option>
+                          <option value="Médio">Médio</option>
+                          <option value="Baixo">Baixo</option>
+                          <option value="Crítico">Crítico</option>
                         </select>
                       </td>
                     )}
@@ -136,9 +157,9 @@ export default function AlertList({ alerts, onDelete, onViewOnMap, showRiskLevel
                       <td className="py-2 px-4 border-b">
                         <span
                           className="inline-block w-4 h-4 rounded-full mr-2"
-                          style={{ backgroundColor: alert.nivelRisco }}
+                          style={{ backgroundColor: getRiskDisplay(alert.nivelRisco).color }}
                         ></span>
-                        {alert.nivelRisco === 'red' ? 'Alto' : alert.nivelRisco === 'yellow' ? 'Médio' : alert.nivelRisco === 'green' ? 'Baixo' : 'Não informado'}
+                        {getRiskDisplay(alert.nivelRisco).text}
                       </td>
                     )}
                     {showLatitude && <td className="py-2 px-4 border-b">{alert.latitude || 'N/A'}</td>}

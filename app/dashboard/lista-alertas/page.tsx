@@ -20,13 +20,33 @@ export default function ListaAlertasPage() {
   const [editingAlert, setEditingAlert] = useState<Alert | null>(null);
   const router = useRouter();
 
+  const getRiskDisplay = (nivelRisco: string) => {
+    const colorToText: Record<string, string> = {
+      'red': 'Crítico',
+      'orange': 'Alto',
+      'yellow': 'Médio',
+      'green': 'Baixo'
+    };
+    const textToColor: Record<string, string> = {
+      'Crítico': 'red',
+      'Alto': 'orange',
+      'Médio': 'yellow',
+      'Baixo': 'green'
+    };
+    const text = colorToText[nivelRisco] || nivelRisco;
+    const color = textToColor[text] || textToColor[nivelRisco] || 'gray';
+    return { text, color };
+  };
+
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "alerts"), (snapshot) => {
       const data = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
         createdAt: doc.data().createdAt?.toDate() || new Date(),
+        nivelRisco: doc.data().nivelRisco || 'Alto',
       })) as Alert[];
+      data.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
       setAlerts(data);
     });
     return unsubscribe; // Cleanup listener on unmount
@@ -108,9 +128,10 @@ export default function ListaAlertasPage() {
                         onChange={(e) => setEditingAlert({ ...editingAlert, nivelRisco: e.target.value })}
                         className="border border-gray-300 rounded px-2 py-1 w-full"
                       >
-                        <option value="red">Alto</option>
-                        <option value="yellow">Médio</option>
-                        <option value="green">Baixo</option>
+                        <option value="Alto">Alto</option>
+                        <option value="Médio">Médio</option>
+                        <option value="Baixo">Baixo</option>
+                        <option value="Crítico">Crítico</option>
                       </select>
                     </td>
                     <td className="py-2 px-4 border-b">
@@ -153,9 +174,9 @@ export default function ListaAlertasPage() {
                     <td className="py-2 px-4 border-b">
                       <span
                         className="inline-block w-4 h-4 rounded-full mr-2"
-                        style={{ backgroundColor: alert.nivelRisco }}
+                        style={{ backgroundColor: getRiskDisplay(alert.nivelRisco).color }}
                       ></span>
-                      {alert.nivelRisco === 'red' ? 'Alto' : alert.nivelRisco === 'yellow' ? 'Médio' : alert.nivelRisco === 'green' ? 'Baixo' : 'Não informado'}
+                      {getRiskDisplay(alert.nivelRisco).text}
                     </td>
                     <td className="py-2 px-4 border-b">{alert.latitude || 'N/A'}</td>
                     <td className="py-2 px-4 border-b">{alert.longitude || 'N/A'}</td>

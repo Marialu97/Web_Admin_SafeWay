@@ -29,7 +29,9 @@ export default function VerificarAlertasPage() {
       id: doc.id,
       ...doc.data(),
       createdAt: doc.data().createdAt?.toDate() || new Date(),
+      nivelRisco: doc.data().nivelRisco || 'Alto',
     })) as Alert[];
+    data.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
     setAlerts(data);
     setFilteredAlerts(data);
   };
@@ -85,9 +87,10 @@ export default function VerificarAlertasPage() {
           className="border border-gray-300 p-2 rounded"
         >
           <option value="">Todos os níveis de risco</option>
-          <option value="red">Alto</option>
-          <option value="yellow">Médio</option>
-          <option value="green">Baixo</option>
+          <option value="Alto">Alto</option>
+          <option value="Médio">Médio</option>
+          <option value="Baixo">Baixo</option>
+          <option value="Crítico">Crítico</option>
         </select>
         <button
           onClick={fetchAlerts}
@@ -105,7 +108,7 @@ export default function VerificarAlertasPage() {
           alerts={filteredAlerts}
           onDelete={handleDelete}
           onViewOnMap={handleViewOnMap}
-          showRiskLevel={false}
+          showRiskLevel={true}
           showLatitude={false}
           showLongitude={false}
           smallButtons={true}
