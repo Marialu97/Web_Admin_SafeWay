@@ -38,6 +38,7 @@ export default function VerificarAlertasPage() {
 
   const fetchAlerts = async () => {
     const querySnapshot = await getDocs(collection(db, "alerts"));
+<<<<<<< HEAD
     const data = querySnapshot.docs.map((doc) => {
       const d = doc.data();
       return {
@@ -50,6 +51,15 @@ export default function VerificarAlertasPage() {
         createdAt: d.createdAt?.toDate() || new Date(),
       };
     }) as Alert[];
+=======
+    const data = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+      createdAt: doc.data().createdAt?.toDate() || new Date(),
+      nivelRisco: doc.data().nivelRisco || 'Alto',
+    })) as Alert[];
+    data.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+>>>>>>> 0dfeb0266bdf5fc8730e1d266ff4ffd4872d36df
     setAlerts(data);
     setFilteredAlerts(data);
   };
@@ -98,6 +108,7 @@ export default function VerificarAlertasPage() {
             </p>
           </div>
 
+<<<<<<< HEAD
           <div className="bg-gray-50 rounded-lg p-6 mb-8">
             <div className="flex flex-wrap gap-4 items-center">
               <div className="flex-1 min-w-64">
@@ -163,6 +174,49 @@ export default function VerificarAlertasPage() {
             </div>
           </div>
         </div>
+=======
+      <div className="mb-6 flex flex-wrap gap-4 items-center">
+        <input
+          type="text"
+          placeholder="Buscar por título ou descrição"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="border border-gray-300 p-2 rounded flex-1 min-w-64"
+        />
+        <select
+          value={colorFilter}
+          onChange={(e) => setColorFilter(e.target.value)}
+          className="border border-gray-300 p-2 rounded"
+        >
+          <option value="">Todos os níveis de risco</option>
+          <option value="Alto">Alto</option>
+          <option value="Médio">Médio</option>
+          <option value="Baixo">Baixo</option>
+          <option value="Crítico">Crítico</option>
+        </select>
+        <button
+          onClick={fetchAlerts}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+        >
+          Atualizar
+        </button>
+        <span className="text-gray-700">
+          Total de alertas: {filteredAlerts.length}
+        </span>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <AlertList
+          alerts={filteredAlerts}
+          onDelete={handleDelete}
+          onViewOnMap={handleViewOnMap}
+          showRiskLevel={true}
+          showLatitude={false}
+          showLongitude={false}
+          smallButtons={true}
+        />
+        <AlertMap alerts={filteredAlerts} center={mapCenter as [number, number]} />
+>>>>>>> 0dfeb0266bdf5fc8730e1d266ff4ffd4872d36df
       </div>
     </div>
   );

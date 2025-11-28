@@ -67,6 +67,16 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
   const [limeiraData, setLimeiraData] = useState<any>(null);
   const [alerts, setAlerts] = useState<Alert[]>([]);
 
+  const getRiskColor = (nivelRisco: string) => {
+    const colorMap: Record<string, string> = {
+      'Crítico': 'red',
+      'Alto': 'orange',
+      'Médio': 'yellow',
+      'Baixo': 'green'
+    };
+    return colorMap[nivelRisco] || 'gray';
+  };
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       // @ts-ignore
@@ -129,7 +139,7 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
           maxClusterRadius={50}
           iconCreateFunction={(cluster: { getChildCount: () => any; }) => {
             const count = cluster.getChildCount();
-            let color = 'rgba(255, 0, 0, 0.6)';
+            let color = 'hsla(241, 100%, 50%, 0.60)';
             if (count < 5) color = 'rgba(255, 165, 0, 0.6)';
             if (count >= 5) color = 'rgba(255, 0, 0, 0.6)';
             return L.divIcon({

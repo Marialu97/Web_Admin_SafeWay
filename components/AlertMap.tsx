@@ -55,6 +55,16 @@ const getRiskText = (risco: string) => {
 };
 
 export default function AlertMap({ alerts, center }: AlertMapProps) {
+  const getRiskColor = (nivelRisco: string) => {
+    const colorMap: Record<string, string> = {
+      'Crítico': 'red',
+      'Alto': 'orange',
+      'Médio': 'yellow',
+      'Baixo': 'green'
+    };
+    return colorMap[nivelRisco] || 'gray';
+  };
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       import('leaflet').then((L) => {
@@ -98,14 +108,23 @@ export default function AlertMap({ alerts, center }: AlertMapProps) {
               key={alert.id}
               center={[alert.latitude, alert.longitude]}
               radius={50}
+<<<<<<< HEAD
               color={getColor(alert.risco)}
               fillColor={getColor(alert.risco)}
+=======
+              color={getRiskColor(alert.nivelRisco)}
+              fillColor={getRiskColor(alert.nivelRisco)}
+>>>>>>> 0dfeb0266bdf5fc8730e1d266ff4ffd4872d36df
               fillOpacity={0.6}
             >
               <Popup>
                 <strong>Título do Alerta:</strong> {alert.titulo || 'Sem título'} <br />
                 <strong>Descrição:</strong> {alert.descricao || 'Sem descrição'} <br />
+<<<<<<< HEAD
                 <strong>Nível de Risco:</strong> {getRiskText(alert.risco)} <br />
+=======
+                <strong>Nível de Risco:</strong> {alert.nivelRisco || 'Não informado'} <br />
+>>>>>>> 0dfeb0266bdf5fc8730e1d266ff4ffd4872d36df
                 <strong>Latitude:</strong> {alert.latitude} <br />
                 <strong>Longitude:</strong> {alert.longitude}
               </Popup>

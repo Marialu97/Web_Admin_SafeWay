@@ -20,6 +20,7 @@ export default function ListaAlertasPage() {
   const [editingAlert, setEditingAlert] = useState<Alert | null>(null);
   const router = useRouter();
 
+<<<<<<< HEAD
   const mapOldRisco = (risco: string) => {
     switch (risco) {
       case 'red':
@@ -61,10 +62,29 @@ export default function ListaAlertasPage() {
       default:
         return 'Não informado';
     }
+=======
+  const getRiskDisplay = (nivelRisco: string) => {
+    const colorToText: Record<string, string> = {
+      'red': 'Crítico',
+      'orange': 'Alto',
+      'yellow': 'Médio',
+      'green': 'Baixo'
+    };
+    const textToColor: Record<string, string> = {
+      'Crítico': 'red',
+      'Alto': 'orange',
+      'Médio': 'yellow',
+      'Baixo': 'green'
+    };
+    const text = colorToText[nivelRisco] || nivelRisco;
+    const color = textToColor[text] || textToColor[nivelRisco] || 'gray';
+    return { text, color };
+>>>>>>> 0dfeb0266bdf5fc8730e1d266ff4ffd4872d36df
   };
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "alerts"), (snapshot) => {
+<<<<<<< HEAD
       const data = snapshot.docs.map((doc) => {
         const d = doc.data();
         return {
@@ -77,6 +97,15 @@ export default function ListaAlertasPage() {
           createdAt: d.createdAt?.toDate() || new Date(),
         };
       }) as Alert[];
+=======
+      const data = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+        createdAt: doc.data().createdAt?.toDate() || new Date(),
+        nivelRisco: doc.data().nivelRisco || 'Alto',
+      })) as Alert[];
+      data.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+>>>>>>> 0dfeb0266bdf5fc8730e1d266ff4ffd4872d36df
       setAlerts(data);
     });
     return unsubscribe; // Cleanup listener on unmount
@@ -158,10 +187,17 @@ export default function ListaAlertasPage() {
                         onChange={(e) => setEditingAlert({ ...editingAlert, risco: e.target.value })}
                         className="border border-gray-300 rounded px-2 py-1 w-full"
                       >
+<<<<<<< HEAD
                         <option value="alto">Alto</option>
                         <option value="medio">Médio</option>
                         <option value="baixo">Baixo</option>
                         <option value="critico">Crítico</option>
+=======
+                        <option value="Alto">Alto</option>
+                        <option value="Médio">Médio</option>
+                        <option value="Baixo">Baixo</option>
+                        <option value="Crítico">Crítico</option>
+>>>>>>> 0dfeb0266bdf5fc8730e1d266ff4ffd4872d36df
                       </select>
                     </td>
                     <td className="py-2 px-4 border-b">
@@ -204,9 +240,15 @@ export default function ListaAlertasPage() {
                     <td className="py-2 px-4 border-b">
                       <span
                         className="inline-block w-4 h-4 rounded-full mr-2"
+<<<<<<< HEAD
                         style={{ backgroundColor: getColor(alert.risco) }}
                       ></span>
                       {getRiskText(alert.risco)}
+=======
+                        style={{ backgroundColor: getRiskDisplay(alert.nivelRisco).color }}
+                      ></span>
+                      {getRiskDisplay(alert.nivelRisco).text}
+>>>>>>> 0dfeb0266bdf5fc8730e1d266ff4ffd4872d36df
                     </td>
                     <td className="py-2 px-4 border-b">{alert.latitude || 'N/A'}</td>
                     <td className="py-2 px-4 border-b">{alert.longitude || 'N/A'}</td>

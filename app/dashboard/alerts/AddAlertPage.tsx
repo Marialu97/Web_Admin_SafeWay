@@ -14,8 +14,8 @@ const AddAlertPage = () => {
 
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
-  const [tipo, setTipo] = useState(''); // placeholder inicial vazio
-  const [risco, setRisco] = useState(''); // <-- alterado para placeholder vazio
+  const [tipo, setTipo] = useState('outro');
+  const [risco, setRisco] = useState('medio');
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [userId, setUserId] = useState('');
@@ -42,7 +42,7 @@ const AddAlertPage = () => {
         titulo,
         descricao,
         tipo,
-        risco,
+        nivelRisco: risco,
         latitude: parseFloat(latitude),
         longitude: parseFloat(longitude),
         userId,
@@ -53,8 +53,14 @@ const AddAlertPage = () => {
       await addAlert(newAlert);
       alert('✅ Alerta cadastrado com sucesso!');
 
-      // Redirect to dashboard map centered on the new alert
-      router.push(`/dashboard?lat=${parseFloat(latitude)}&lng=${parseFloat(longitude)}`);
+      setTitulo('');
+      setDescricao('');
+      setTipo('outro');
+      setRisco('medio');
+      setLatitude('');
+      setLongitude('');
+      setUserId('');
+      setError('');
     } catch (error) {
       console.error(error);
       setError('Erro ao cadastrar alerta.');
@@ -94,7 +100,6 @@ const AddAlertPage = () => {
           value={tipo}
           onChange={(e) => setTipo(e.target.value)}
           className="border p-2 w-full rounded"
-          required
         >
           <option value="" disabled>— Selecione o tipo de ocorrência —</option>
           <option value="roubo">Roubo</option>
@@ -110,13 +115,11 @@ const AddAlertPage = () => {
 
       <div>
         <label className="block font-semibold mb-1">Nível de Risco</label>
-         <select
+        <select
           value={risco}
           onChange={(e) => setRisco(e.target.value)}
           className="border p-2 w-full rounded"
-          required
         >
-          <option value="" disabled>— Selecione o Nível de Risco —</option>
           <option value="baixo">Baixo</option>
           <option value="medio">Médio</option>
           <option value="alto">Alto</option>
@@ -149,18 +152,7 @@ const AddAlertPage = () => {
           />
         </div>
       </div>
-
-      <div>
-        <label className="block font-semibold mb-1">ID do Usuário</label>
-        <input
-          type="text"
-          value={userId}
-          onChange={(e) => setUserId(e.target.value)}
-          className="border p-2 w-full rounded"
-          placeholder="Ex: g7KJvz2mgzZyGALrENXnTWsswm82"
-        />
-      </div>
-
+      
       {error && <p className="text-red-500">{error}</p>}
 
       <button

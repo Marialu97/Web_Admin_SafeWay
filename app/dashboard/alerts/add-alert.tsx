@@ -8,7 +8,7 @@ const AddAlert = () => {
   const [descricao, setDescricao] = useState('');
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
-  const [nivelRisco, setNivelRisco] = useState('red');
+  const [nivelRisco, setNivelRisco] = useState('Alto');
   const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -36,7 +36,7 @@ const AddAlert = () => {
       setDescricao('');
       setLatitude('');
       setLongitude('');
-      setNivelRisco('red');
+      setNivelRisco('Alto');
     } catch (error) {
       setError('Erro ao cadastrar alerta');
     }
@@ -96,9 +96,10 @@ const AddAlert = () => {
           onChange={(e) => setNivelRisco(e.target.value)}
           className="border p-2"
         >
-          <option value="red">Alto</option>
-          <option value="yellow">Médio</option>
-          <option value="green">Baixo</option>
+          <option value="Alto">Alto</option>
+          <option value="Médio">Médio</option>
+          <option value="Baixo">Baixo</option>
+          <option value="Crítico">Crítico</option>
         </select>
       </div>
 
