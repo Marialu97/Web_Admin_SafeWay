@@ -20,6 +20,16 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
 
+    // Validação básica: campos obrigatórios
+    const missing: string[] = [];
+    if (!email.trim()) missing.push("email");
+    if (!password) missing.push("senha");
+
+    if (missing.length > 0) {
+      setError(`Preencha o(s) campo(s): ${missing.join(", ")}`);
+      return;
+    }
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       router.push("/dashboard"); // Redireciona para o dashboard após o login
@@ -41,7 +51,7 @@ export default function LoginPage() {
             id="email"
             className="w-full p-2 border border-gray-300 rounded-md"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => { setEmail(e.target.value); setError(""); }}
             required
           />
         </div>
@@ -52,12 +62,16 @@ export default function LoginPage() {
             id="password"
             className="w-full p-2 border border-gray-300 rounded-md"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => { setPassword(e.target.value); setError(""); }}
             required
           />
         </div>
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-        <button type="submit" className="w-full bg-blue-600 text-white py-2 mt-4 rounded-md">
+        <button
+          type="submit"
+          disabled={!email.trim() || !password}
+          className={`w-full py-2 mt-4 rounded-md text-white ${!email.trim() || !password ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600"}`}
+        >
           Entrar
         </button>
       </form>

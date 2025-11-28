@@ -6,7 +6,7 @@ import { addAlert } from '@/lib/firestore'; // Função que adiciona alerta no F
 const AddAlert = () => {
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
-  const [tipo, setTipo] = useState('outro');
+  const [tipo, setTipo] = useState('');
   const [risco, setRisco] = useState('medio');
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
@@ -41,7 +41,7 @@ const AddAlert = () => {
       // Limpa o formulário
       setTitulo('');
       setDescricao('');
-      setTipo('outro');
+      setTipo('nao-informado');
       setRisco('medio');
       setLatitude('');
       setLongitude('');
@@ -88,18 +88,21 @@ const AddAlert = () => {
 
       <div>
         <label htmlFor="tipo" className="block font-semibold text-gray-700 mb-1">
-          Tipo de Ocorrência
+          Ocorrência
         </label>
         <select
           id="tipo"
           value={tipo}
           onChange={(e) => setTipo(e.target.value)}
           className="border border-gray-300 p-2 w-full rounded"
+          required
         >
-          <option value="outro">Outro</option>
+          <option value="" disabled>Selecione uma ocorrência</option>
+          <option value="nao-informado">Não informado</option>
           <option value="acidente">Acidente</option>
           <option value="enchente">Enchente</option>
           <option value="queda-de-energia">Queda de Energia</option>
+          <option value="outro">Outro</option>
         </select>
       </div>
 

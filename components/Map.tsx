@@ -15,8 +15,38 @@ interface Alert {
   descricao: string;
   latitude: number;
   longitude: number;
-  nivelRisco: string;
+  risco: string;
 }
+
+const getColor = (risco: string) => {
+  switch (risco) {
+    case 'baixo':
+      return 'lightgreen';
+    case 'medio':
+      return 'yellow';
+    case 'alto':
+      return 'red';
+    case 'critico':
+      return 'purple';
+    default:
+      return 'rgba(0,0,0,0.5)';
+  }
+};
+
+const getRiskText = (risco: string) => {
+  switch (risco) {
+    case 'baixo':
+      return 'Baixo';
+    case 'medio':
+      return 'Médio';
+    case 'alto':
+      return 'Alto';
+    case 'critico':
+      return 'Crítico';
+    default:
+      return 'Não informado';
+  }
+};
 
 function MapClickHandler() {
   const router = useRouter();
@@ -124,14 +154,14 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
               key={alert.id}
               center={[alert.latitude, alert.longitude]}
               radius={50}
-              color={alert.nivelRisco || 'red'}
-              fillColor={alert.nivelRisco || 'red'}
+              color={getColor(alert.risco)}
+              fillColor={getColor(alert.risco)}
               fillOpacity={0.6}
             >
               <Popup>
                 <strong>Título do Alerta:</strong> {alert.titulo || 'Sem título'} <br />
                 <strong>Descrição:</strong> {alert.descricao || 'Sem descrição'} <br />
-                <strong>Nível de Risco:</strong> {alert.nivelRisco === 'red' ? 'Alto' : alert.nivelRisco === 'yellow' ? 'Médio' : alert.nivelRisco === 'green' ? 'Baixo' : 'Não informado'}
+                <strong>Nível de Risco:</strong> {getRiskText(alert.risco)}
               </Popup>
             </Circle>
           ))}

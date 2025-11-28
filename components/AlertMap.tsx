@@ -15,7 +15,7 @@ interface Alert {
   descricao: string;
   latitude: number;
   longitude: number;
-  nivelRisco: string;
+  risco: string;
   createdAt: Date;
 }
 
@@ -23,6 +23,36 @@ interface AlertMapProps {
   alerts: Alert[];
   center: [number, number];
 }
+
+const getColor = (risco: string) => {
+  switch (risco) {
+    case 'baixo':
+      return 'lightgreen';
+    case 'medio':
+      return 'yellow';
+    case 'alto':
+      return 'red';
+    case 'critico':
+      return 'purple';
+    default:
+      return 'rgba(0,0,0,0.5)';
+  }
+};
+
+const getRiskText = (risco: string) => {
+  switch (risco) {
+    case 'baixo':
+      return 'Baixo';
+    case 'medio':
+      return 'Médio';
+    case 'alto':
+      return 'Alto';
+    case 'critico':
+      return 'Crítico';
+    default:
+      return 'Não informado';
+  }
+};
 
 export default function AlertMap({ alerts, center }: AlertMapProps) {
   useEffect(() => {
@@ -68,14 +98,14 @@ export default function AlertMap({ alerts, center }: AlertMapProps) {
               key={alert.id}
               center={[alert.latitude, alert.longitude]}
               radius={50}
-              color={alert.nivelRisco || 'red'}
-              fillColor={alert.nivelRisco || 'red'}
+              color={getColor(alert.risco)}
+              fillColor={getColor(alert.risco)}
               fillOpacity={0.6}
             >
               <Popup>
                 <strong>Título do Alerta:</strong> {alert.titulo || 'Sem título'} <br />
                 <strong>Descrição:</strong> {alert.descricao || 'Sem descrição'} <br />
-                <strong>Nível de Risco:</strong> {alert.nivelRisco === 'red' ? 'Alto' : alert.nivelRisco === 'yellow' ? 'Médio' : alert.nivelRisco === 'green' ? 'Baixo' : 'Não informado'} <br />
+                <strong>Nível de Risco:</strong> {getRiskText(alert.risco)} <br />
                 <strong>Latitude:</strong> {alert.latitude} <br />
                 <strong>Longitude:</strong> {alert.longitude}
               </Popup>
