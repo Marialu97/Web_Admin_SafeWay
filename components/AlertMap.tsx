@@ -1,13 +1,14 @@
 "use client";
 
 import dynamic from 'next/dynamic';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
 
 const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false });
 const TileLayer = dynamic(() => import('react-leaflet').then(mod => mod.TileLayer), { ssr: false });
 const Circle = dynamic(() => import('react-leaflet').then(mod => mod.Circle), { ssr: false });
 const Popup = dynamic(() => import('react-leaflet').then(mod => mod.Popup), { ssr: false });
+const Marker = dynamic(() => import('react-leaflet').then(mod => mod.Marker), { ssr: false });
 
 interface Alert {
   id: string;
@@ -46,6 +47,7 @@ const getRiskText = (risco: string) => {
 };
 
 export default function AlertMap({ alerts, center }: AlertMapProps) {
+  const mapRef = useRef<any>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -61,12 +63,20 @@ export default function AlertMap({ alerts, center }: AlertMapProps) {
     }
   }, []);
 
+  // Update map center when center prop changes
+  useEffect(() => {
+    if (mapRef.current) {
+      mapRef.current.setView(center, 16);
+    }
+  }, [center]);
+
   return (
     <div className="bg-white p-6 rounded-xl shadow-lg">
       <h2 className="text-xl font-bold mb-4">Mapa de Alertas</h2>
 
       <div style={{ height: "500px", width: "100%" }}>
         <MapContainer
+          ref={mapRef}
           center={center}
           zoom={13}
           minZoom={13}

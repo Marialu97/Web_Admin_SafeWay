@@ -20,6 +20,7 @@ interface AlertListProps {
   showLatitude?: boolean;
   showLongitude?: boolean;
   smallButtons?: boolean;
+  showViewOnMapButton?: boolean;
 }
 
 // CORES DO RISCO
@@ -70,6 +71,7 @@ export default function AlertList({
   showLatitude = true,
   showLongitude = true,
   smallButtons = false,
+  showViewOnMapButton = true,
 }: AlertListProps) {
   const [editingAlert, setEditingAlert] = useState<Alert | null>(null);
 
@@ -222,21 +224,33 @@ export default function AlertList({
                     {showLongitude && <td className="py-2 px-4 border-b">{alert.longitude}</td>}
                     <td className="py-2 px-4 border-b">{alert.createdAt?.toLocaleString()}</td>
 
-                    <td className="py-2 px-4 border-b text-center flex space-x-1 justify-center">
-                      <button
-                        onClick={() => onViewOnMap(alert.latitude, alert.longitude)}
-                        className={`bg-blue-600 hover:bg-blue-700 text-white ${
-                          smallButtons ? "px-1 py-1 text-sm" : "px-2 py-1"
-                        } rounded`}
-                      >
-                        Ver no mapa
-                      </button>
+                    <td className="py-2 px-4 border-b text-center flex items-center justify-center space-x-2">
+                      {showRiskLevel && (
+                        <div className="flex items-center">
+                          <span
+                            className="inline-block w-4 h-4 rounded-full mr-2"
+                            style={{ backgroundColor: getRiskDisplay(alert.risco).color }}
+                          ></span>
+                          <span className="text-sm font-medium">{getRiskDisplay(alert.risco).text}</span>
+                        </div>
+                      )}
+
+                      {showViewOnMapButton && (
+                        <button
+                          onClick={() => onViewOnMap(alert.latitude, alert.longitude)}
+                          className={`bg-blue-600 hover:bg-blue-700 text-white ${
+                            smallButtons ? "px-1 py-1 text-sm" : "px-2 py-1"
+                          } rounded`}
+                        >
+                          Ver no mapa
+                        </button>
+                      )}
 
                       <button
                         onClick={() => onDelete(alert.id)}
                         className={`bg-red-600 hover:bg-red-700 text-white ${
-                          smallButtons ? "px-1 py-1 text-sm" : "px-2 py-1"
-                        } rounded`}
+                          smallButtons ? "px-3 py-2 text-sm" : "px-4 py-2"
+                        } rounded-md font-medium transition-colors duration-200`}
                       >
                         Excluir
                       </button>

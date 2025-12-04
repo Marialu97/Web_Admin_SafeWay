@@ -40,12 +40,12 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
 
   const getRiskColor = (nivelRisco: string) => {
     const colorMap: Record<string, string> = {
-      'Crítico': 'purple',
-      'Alto': 'red',
-      'Médio': 'yellow',
-      'Baixo': 'green'
+      'critico': 'purple',
+      'alto': 'red',
+      'medio': 'yellow',
+      'baixo': 'lightgreen'
     };
-    return colorMap[nivelRisco] || 'gray';
+    return colorMap[nivelRisco.toLowerCase()] || 'gray';
   };
 
   useEffect(() => {
@@ -77,7 +77,7 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
           descricao: alertData.descricao || '',
           latitude: alertData.latitude,
           longitude: alertData.longitude,
-          nivelRisco: alertData.nivelRisco || 'Alto', // Default to 'Alto' if not set
+          nivelRisco: alertData.risco || alertData.nivelRisco || 'alto', // Use 'risco' if available, else 'nivelRisco', default to 'alto'
         } as Alert;
       });
       setAlerts(data);

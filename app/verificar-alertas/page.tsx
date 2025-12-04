@@ -165,10 +165,11 @@ export default function VerificarAlertasPage() {
               alerts={filteredAlerts}
               onDelete={handleDelete}
               onViewOnMap={handleViewOnMap}
-              showRiskLevel={true}
+              showRiskLevel={false}
               showLatitude={false}
               showLongitude={false}
               smallButtons={true}
+              showViewOnMapButton={false}
             />
           </div>
 
