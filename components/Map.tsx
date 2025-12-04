@@ -68,10 +68,17 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'alerts'), (snapshot) => {
-      const data = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as Alert[];
+      const data = snapshot.docs.map((doc) => {
+        const alertData = doc.data();
+        return {
+          id: doc.id,
+          titulo: alertData.titulo || '',
+          descricao: alertData.descricao || '',
+          latitude: alertData.latitude,
+          longitude: alertData.longitude,
+          nivelRisco: alertData.nivelRisco || 'Alto', // Default to 'Alto' if not set
+        } as Alert;
+      });
       setAlerts(data);
     });
     return unsubscribe;
@@ -134,14 +141,14 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
               key={alert.id}
               center={[alert.latitude, alert.longitude]}
               radius={50}
-              color={alert.nivelRisco || 'red'}
-              fillColor={alert.nivelRisco || 'red'}
+              color={getRiskColor(alert.nivelRisco)}
+              fillColor={getRiskColor(alert.nivelRisco)}
               fillOpacity={0.6}
             >
               <Popup>
                 <strong>Título do Alerta:</strong> {alert.titulo || 'Sem título'} <br />
                 <strong>Descrição:</strong> {alert.descricao || 'Sem descrição'} <br />
-                <strong>Nível de Risco:</strong> {alert.nivelRisco === 'red' ? 'Alto' : alert.nivelRisco === 'yellow' ? 'Médio' : alert.nivelRisco === 'green' ? 'Baixo' : 'Não informado'}
+                <strong>Nível de Risco:</strong> {alert.nivelRisco || 'Não informado'}
               </Popup>
             </Circle>
           ))}
