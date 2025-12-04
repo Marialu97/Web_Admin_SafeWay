@@ -11,7 +11,7 @@ interface Alert {
   descricao: string;
   latitude: number;
   longitude: number;
-  nivelRisco: string;
+  risco: string;
   createdAt: Date;
 }
 
@@ -20,33 +20,63 @@ export default function ListaAlertasPage() {
   const [editingAlert, setEditingAlert] = useState<Alert | null>(null);
   const router = useRouter();
 
-  const getRiskDisplay = (nivelRisco: string) => {
-    const colorToText: Record<string, string> = {
-      'red': 'Crítico',
-      'orange': 'Alto',
-      'yellow': 'Médio',
-      'green': 'Baixo'
-    };
-    const textToColor: Record<string, string> = {
-      'Crítico': 'red',
-      'Alto': 'orange',
-      'Médio': 'yellow',
-      'Baixo': 'green'
-    };
-    const text = colorToText[nivelRisco] || nivelRisco;
-    const color = textToColor[text] || textToColor[nivelRisco] || 'gray';
-    return { text, color };
+  const mapOldRisco = (risco: string) => {
+    switch (risco) {
+      case 'red':
+        return 'alto';
+      case 'yellow':
+        return 'medio';
+      case 'green':
+        return 'baixo';
+      default:
+        return risco; // if already new, or critico
+    }
+  };
+
+  const getColor = (risco: string) => {
+    switch (risco) {
+      case 'baixo':
+        return 'lightgreen';
+      case 'medio':
+        return 'yellow';
+      case 'alto':
+        return 'red';
+      case 'critico':
+        return 'purple';
+      default:
+        return 'rgba(0,0,0,0.5)';
+    }
+  };
+
+  const getRiskText = (risco: string) => {
+    switch (risco) {
+      case 'baixo':
+        return 'Baixo';
+      case 'medio':
+        return 'Médio';
+      case 'alto':
+        return 'Alto';
+      case 'critico':
+        return 'Crítico';
+      default:
+        return 'Não informado';
+    }
   };
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "alerts"), (snapshot) => {
-      const data = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-        createdAt: doc.data().createdAt?.toDate() || new Date(),
-        nivelRisco: doc.data().nivelRisco || 'Alto',
-      })) as Alert[];
-      data.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+      const data = snapshot.docs.map((doc) => {
+        const d = doc.data();
+        return {
+          id: doc.id,
+          titulo: d.titulo,
+          descricao: d.descricao,
+          latitude: d.latitude,
+          longitude: d.longitude,
+          risco: d.risco || mapOldRisco(d.nivelRisco),
+          createdAt: d.createdAt?.toDate() || new Date(),
+        };
+      }) as Alert[];
       setAlerts(data);
     });
     return unsubscribe; // Cleanup listener on unmount
@@ -124,14 +154,14 @@ export default function ListaAlertasPage() {
                     </td>
                     <td className="py-2 px-4 border-b">
                       <select
-                        value={editingAlert.nivelRisco}
-                        onChange={(e) => setEditingAlert({ ...editingAlert, nivelRisco: e.target.value })}
+                        value={editingAlert.risco}
+                        onChange={(e) => setEditingAlert({ ...editingAlert, risco: e.target.value })}
                         className="border border-gray-300 rounded px-2 py-1 w-full"
                       >
-                        <option value="Alto">Alto</option>
-                        <option value="Médio">Médio</option>
-                        <option value="Baixo">Baixo</option>
-                        <option value="Crítico">Crítico</option>
+                        <option value="alto">Alto</option>
+                        <option value="medio">Médio</option>
+                        <option value="baixo">Baixo</option>
+                        <option value="critico">Crítico</option>
                       </select>
                     </td>
                     <td className="py-2 px-4 border-b">
@@ -174,9 +204,9 @@ export default function ListaAlertasPage() {
                     <td className="py-2 px-4 border-b">
                       <span
                         className="inline-block w-4 h-4 rounded-full mr-2"
-                        style={{ backgroundColor: getRiskDisplay(alert.nivelRisco).color }}
+                        style={{ backgroundColor: getColor(alert.risco) }}
                       ></span>
-                      {getRiskDisplay(alert.nivelRisco).text}
+                      {getRiskText(alert.risco)}
                     </td>
                     <td className="py-2 px-4 border-b">{alert.latitude || 'N/A'}</td>
                     <td className="py-2 px-4 border-b">{alert.longitude || 'N/A'}</td>

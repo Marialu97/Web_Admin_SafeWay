@@ -15,7 +15,7 @@ interface Alert {
   descricao: string;
   latitude: number;
   longitude: number;
-  nivelRisco: string;
+  risco: string; // baixo, medio, alto, critico
   createdAt: Date;
 }
 
@@ -24,16 +24,28 @@ interface AlertMapProps {
   center: [number, number];
 }
 
+// Cores padronizadas conforme risco
+const getColor = (risco: string) => {
+  switch (risco) {
+    case 'baixo': return 'lightgreen';
+    case 'medio': return 'yellow';
+    case 'alto': return 'red';
+    case 'critico': return 'purple';
+    default: return 'gray';
+  }
+};
+
+const getRiskText = (risco: string) => {
+  switch (risco) {
+    case 'baixo': return 'Baixo';
+    case 'medio': return 'Médio';
+    case 'alto': return 'Alto';
+    case 'critico': return 'Crítico';
+    default: return 'Não informado';
+  }
+};
+
 export default function AlertMap({ alerts, center }: AlertMapProps) {
-  const getRiskColor = (nivelRisco: string) => {
-    const colorMap: Record<string, string> = {
-      'Crítico': 'red',
-      'Alto': 'orange',
-      'Médio': 'yellow',
-      'Baixo': 'green'
-    };
-    return colorMap[nivelRisco] || 'gray';
-  };
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -41,12 +53,9 @@ export default function AlertMap({ alerts, center }: AlertMapProps) {
         // @ts-ignore
         delete L.Icon.Default.prototype._getIconUrl;
         L.Icon.Default.mergeOptions({
-          iconRetinaUrl:
-            'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-          iconUrl:
-            'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-          shadowUrl:
-            'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+          iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+          iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+          shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
         });
       });
     }
@@ -55,7 +64,8 @@ export default function AlertMap({ alerts, center }: AlertMapProps) {
   return (
     <div className="bg-white p-6 rounded-xl shadow-lg">
       <h2 className="text-xl font-bold mb-4">Mapa de Alertas</h2>
-      <div style={{ height: '500px', width: '100%' }}>
+
+      <div style={{ height: "500px", width: "100%" }}>
         <MapContainer
           center={center}
           zoom={13}
@@ -66,10 +76,10 @@ export default function AlertMap({ alerts, center }: AlertMapProps) {
             [-22.45, -47.27],
           ]}
           maxBoundsViscosity={1.0}
-          style={{ height: '100%', width: '100%' }}
+          style={{ height: "100%", width: "100%" }}
         >
           <TileLayer
-            attribution='© <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+            attribution='© OpenStreetMap'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
@@ -78,14 +88,14 @@ export default function AlertMap({ alerts, center }: AlertMapProps) {
               key={alert.id}
               center={[alert.latitude, alert.longitude]}
               radius={50}
-              color={getRiskColor(alert.nivelRisco)}
-              fillColor={getRiskColor(alert.nivelRisco)}
+              color={getColor(alert.risco)}
+              fillColor={getColor(alert.risco)}
               fillOpacity={0.6}
             >
               <Popup>
                 <strong>Título do Alerta:</strong> {alert.titulo || 'Sem título'} <br />
                 <strong>Descrição:</strong> {alert.descricao || 'Sem descrição'} <br />
-                <strong>Nível de Risco:</strong> {alert.nivelRisco || 'Não informado'} <br />
+                <strong>Nível de Risco:</strong> {getRiskText(alert.risco)} <br />
                 <strong>Latitude:</strong> {alert.latitude} <br />
                 <strong>Longitude:</strong> {alert.longitude}
               </Popup>

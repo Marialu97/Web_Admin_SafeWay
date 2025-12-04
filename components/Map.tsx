@@ -16,6 +16,7 @@ interface Alert {
   latitude: number;
   longitude: number;
   nivelRisco: string;
+  risco?: string;
 }
 
 function MapClickHandler() {
@@ -39,8 +40,8 @@ export default function MapaLimeira({ focusLat, focusLng }: { focusLat?: number;
 
   const getRiskColor = (nivelRisco: string) => {
     const colorMap: Record<string, string> = {
-      'Crítico': 'red',
-      'Alto': 'orange',
+      'Crítico': 'purple',
+      'Alto': 'red',
       'Médio': 'yellow',
       'Baixo': 'green'
     };

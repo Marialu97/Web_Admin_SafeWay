@@ -30,24 +30,25 @@ export default function Dashboard() {
     <div>
       <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
 
+
       {/* Legenda das Cores */}
       <div className="mb-4 p-4 bg-white rounded-lg shadow-md">
         <h2 className="text-lg font-semibold mb-2">Legenda - Níveis de Risco</h2>
         <div className="flex flex-wrap gap-4">
           <div className="flex items-center">
-            <div className="w-4 h-4 bg-red-500 rounded-full mr-2"></div>
+            <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: 'purple' }}></div>
             <span>Crítico</span>
           </div>
           <div className="flex items-center">
-            <div className="w-4 h-4 bg-orange-500 rounded-full mr-2"></div>
+            <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: 'red' }}></div>
             <span>Alto</span>
           </div>
           <div className="flex items-center">
-            <div className="w-4 h-4 bg-yellow-500 rounded-full mr-2"></div>
+            <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: 'yellow' }}></div>
             <span>Médio</span>
           </div>
           <div className="flex items-center">
-            <div className="w-4 h-4 bg-green-500 rounded-full mr-2"></div>
+            <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: 'lightgreen' }}></div>
             <span>Baixo</span>
           </div>
         </div>

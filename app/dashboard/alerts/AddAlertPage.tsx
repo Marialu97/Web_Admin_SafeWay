@@ -1,20 +1,21 @@
 "use client";
 
 export const dynamic = "force-dynamic";
-
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { addAlert } from '@/lib/firestore';
 import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const AddAlertPage = () => {
   const searchParams = useSearchParams();
   const latParam = searchParams.get('lat');
   const lngParam = searchParams.get('lng');
+  const router = useRouter();
 
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
   const [tipo, setTipo] = useState('outro');
-  const [risco, setRisco] = useState('Médio');
+  const [risco, setRisco] = useState('medio');
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [userId, setUserId] = useState('');
@@ -30,7 +31,8 @@ const AddAlertPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!titulo || !descricao || !latitude || !longitude) {
+    // agora valida também o tipo e o risco
+    if (!titulo || !descricao || !latitude || !longitude || !tipo || !risco) {
       setError('Todos os campos obrigatórios devem ser preenchidos!');
       return;
     }
@@ -54,7 +56,7 @@ const AddAlertPage = () => {
       setTitulo('');
       setDescricao('');
       setTipo('outro');
-      setRisco('Médio');
+      setRisco('Alto');
       setLatitude('');
       setLongitude('');
       setUserId('');
@@ -99,14 +101,14 @@ const AddAlertPage = () => {
           onChange={(e) => setTipo(e.target.value)}
           className="border p-2 w-full rounded"
         >
-          <option value="outro">Ocorrência</option>
+          <option value="" disabled>— Selecione o tipo de ocorrência —</option>
           <option value="roubo">Roubo</option>
           <option value="furto">Furto</option>
           <option value="sequestro">Sequestro</option>
           <option value="assedio">Assédio</option>
           <option value="acidentes">Acidentes</option>
           <option value="estupro">Estupro</option>
-           <option value="alagamento">Alagamento</option>
+          <option value="alagamento">Alagamento</option>
           <option value="queda-de-energia">Queda de Energia</option>
         </select>
       </div>
