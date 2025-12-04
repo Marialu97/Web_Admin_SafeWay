@@ -224,9 +224,9 @@ export default function AlertList({
                     {showLongitude && <td className="py-2 px-4 border-b">{alert.longitude}</td>}
                     <td className="py-2 px-4 border-b">{alert.createdAt?.toLocaleString()}</td>
 
-                    <td className="py-2 px-4 border-b text-center flex items-center justify-center space-x-2">
+                    <td className="py-2 px-4 border-b text-center">
                       {showRiskLevel && (
-                        <div className="flex items-center">
+                        <div className="flex items-center justify-center mb-2">
                           <span
                             className="inline-block w-4 h-4 rounded-full mr-2"
                             style={{ backgroundColor: getRiskDisplay(alert.risco).color }}
@@ -235,25 +235,36 @@ export default function AlertList({
                         </div>
                       )}
 
-                      {showViewOnMapButton && (
+                      <div className="flex items-center justify-center space-x-2">
                         <button
-                          onClick={() => onViewOnMap(alert.latitude, alert.longitude)}
+                          onClick={() => handleEdit(alert)}
                           className={`bg-blue-600 hover:bg-blue-700 text-white ${
-                            smallButtons ? "px-1 py-1 text-sm" : "px-2 py-1"
-                          } rounded`}
+                            smallButtons ? "px-3 py-2 text-sm" : "px-4 py-2"
+                          } rounded-md font-medium transition-colors duration-200`}
                         >
-                          Ver no mapa
+                          Editar
                         </button>
-                      )}
 
-                      <button
-                        onClick={() => onDelete(alert.id)}
-                        className={`bg-red-600 hover:bg-red-700 text-white ${
-                          smallButtons ? "px-3 py-2 text-sm" : "px-4 py-2"
-                        } rounded-md font-medium transition-colors duration-200`}
-                      >
-                        Excluir
-                      </button>
+                        {showViewOnMapButton && (
+                          <button
+                            onClick={() => onViewOnMap(alert.latitude, alert.longitude)}
+                            className={`bg-blue-600 hover:bg-blue-700 text-white ${
+                              smallButtons ? "px-1 py-1 text-sm" : "px-2 py-1"
+                            } rounded`}
+                          >
+                            Ver no mapa
+                          </button>
+                        )}
+
+                        <button
+                          onClick={() => onDelete(alert.id)}
+                          className={`bg-red-600 hover:bg-red-700 text-white ${
+                            smallButtons ? "px-3 py-2 text-sm" : "px-4 py-2"
+                          } rounded-md font-medium transition-colors duration-200`}
+                        >
+                          Excluir
+                        </button>
+                      </div>
                     </td>
                   </>
                 )}
