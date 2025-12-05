@@ -1,0 +1,507 @@
+[debug] [2025-12-04T18:16:22.840Z] ----------------------------------------------------------------------
+[debug] [2025-12-04T18:16:22.844Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\06095825261\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2025-12-04T18:16:22.844Z] CLI Version:   14.23.0
+[debug] [2025-12-04T18:16:22.844Z] Platform:      win32
+[debug] [2025-12-04T18:16:22.844Z] Node Version:  v24.11.0
+[debug] [2025-12-04T18:16:22.844Z] Time:          Thu Dec 04 2025 15:16:22 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2025-12-04T18:16:22.844Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-12-04T18:16:22.948Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-12-04T18:16:22.948Z] > authorizing via signed-in user (marialuizaelias04@gmail.com)
+[debug] [2025-12-04T18:16:22.948Z] [iam] checking project safeway-dev-8542d for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-12-04T18:16:22.950Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:16:22.950Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:16:22.950Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/safeway-dev-8542d:testIamPermissions [none]
+[debug] [2025-12-04T18:16:22.950Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/safeway-dev-8542d:testIamPermissions x-goog-quota-user=projects/safeway-dev-8542d
+[debug] [2025-12-04T18:16:22.950Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/safeway-dev-8542d:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-12-04T18:16:23.818Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/safeway-dev-8542d:testIamPermissions 200
+[debug] [2025-12-04T18:16:23.818Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/safeway-dev-8542d:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-12-04T18:16:23.818Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:16:23.818Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:16:23.818Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d [none]
+[debug] [2025-12-04T18:16:24.230Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d 200
+[debug] [2025-12-04T18:16:24.230Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d {"projectId":"safeway-dev-8542d","projectNumber":"666685520949","displayName":"safeway-dev","name":"projects/safeway-dev-8542d","resources":{"hostingSite":"safeway-dev-8542d"},"state":"ACTIVE","etag":"1_9e16c6fc-55c8-4c61-b9ff-acd61c919462"}
+[debug] [2025-12-04T18:16:30.295Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:16:30.295Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:16:30.295Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites pageToken=&pageSize=10
+[debug] [2025-12-04T18:16:31.675Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites 200
+[debug] [2025-12-04T18:16:31.675Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites {"sites":[{"name":"projects/safeway-dev-8542d/sites/safeway-dev-8542d","defaultUrl":"https://safeway-dev-8542d.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2025-12-04T18:16:31.676Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:16:31.676Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:16:31.676Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites 
+[debug] [2025-12-04T18:16:31.972Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites 200
+[debug] [2025-12-04T18:16:31.972Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites {"sites":[{"name":"projects/safeway-dev-8542d/sites/safeway-dev-8542d","defaultUrl":"https://safeway-dev-8542d.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2025-12-04T18:16:31.972Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:16:31.972Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:16:31.973Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d/webApps/-/config [none]
+[debug] [2025-12-04T18:16:32.996Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d/webApps/-/config 200
+[debug] [2025-12-04T18:16:32.997Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d/webApps/-/config {"projectId":"safeway-dev-8542d","appId":"1:666685520949:web:6872e05e2ff94299e8c57c","storageBucket":"safeway-dev-8542d.firebasestorage.app","apiKey":"AIzaSyAykEbRJWi-RZTn3afIJnczkYoU7oh3fWE","authDomain":"safeway-dev-8542d.firebaseapp.com","messagingSenderId":"666685520949","measurementId":"G-BL3992JTHB","projectNumber":"666685520949","version":"2"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-12-04T18:16:43.118Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:16:43.118Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:16:43.118Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites/safeway-dev-8542d [none]
+[debug] [2025-12-04T18:16:44.101Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites/safeway-dev-8542d 200
+[debug] [2025-12-04T18:16:44.101Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites/safeway-dev-8542d {"name":"projects/safeway-dev-8542d/sites/safeway-dev-8542d","defaultUrl":"https://safeway-dev-8542d.web.app","type":"DEFAULT_SITE"}
+[info]   ▲ Next.js 14.2.33
+
+[info]   - Environments: .env.local
+
+
+[info]    Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully
+
+[info]    Linting and checking validity of types ...
+
+[info]    Collecting page data ...
+
+[info]    Generating static pages (0/13) ...
+
+[info] D [FirebaseError]: Firebase: Error (auth/invalid-api-key).
+    at y (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:82340)
+    at C (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:82388)
+    at i.instanceFactory (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:135398)
+    at o.getOrInitializeService (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:67098)
+    at o.initialize (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:66473)
+    at eP (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:118990)
+    at tT (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:136067)
+    at 72838 (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\app\dashboard\users\page.js:1:7640)
+    at Object.t [as require] (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\webpack-runtime.js:1:128)
+    at require (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:16:18839) {
+  code: 'auth/invalid-api-key',
+  customData: { appName: '[DEFAULT]' },
+  digest: '3831567061'
+}
+
+[info] 
+Error occurred prerendering page "/dashboard/users". Read more: https://nextjs.org/docs/messages/prerender-error
+
+FirebaseError: Firebase: Error (auth/invalid-api-key).
+    at y (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:82340)
+    at C (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:82388)
+    at i.instanceFactory (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:135398)
+    at o.getOrInitializeService (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:67098)
+    at o.initialize (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:66473)
+    at eP (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:118990)
+    at tT (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:136067)
+    at 72838 (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\app\dashboard\users\page.js:1:7640)
+    at Object.t [as require] (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\webpack-runtime.js:1:128)
+    at require (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:16:18839)
+
+[info]    Generating static pages (3/13) 
+
+[info]  ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/dashboard". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at s (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:3:735720)
+    at c (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:3:746742)
+    at l (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\app\dashboard\page.js:1:4258)
+    at nj (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:46252)
+    at nM (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:47572)
+    at nN (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64547)
+    at nI (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:47011)
+    at nM (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:47718)
+    at nM (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:61547)
+    at nN (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64547)
+
+Error occurred prerendering page "/dashboard". Read more: https://nextjs.org/docs/messages/prerender-error
+
+
+[info]    Generating static pages (6/13) 
+
+[info]    Generating static pages (9/13) 
+
+[info]  ✓ Generating static pages (13/13)
+
+[info] 
+
+[info] > Export encountered errors on following paths:
+	/dashboard/page: /dashboard
+	/dashboard/users/page: /dashboard/users
+
+[debug] [2025-12-04T18:17:15.810Z] Error: ENOENT: no such file or directory, open 'C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\export-marker.json'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-12-04T18:17:45.702Z] ----------------------------------------------------------------------
+[debug] [2025-12-04T18:17:45.707Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\06095825261\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2025-12-04T18:17:45.708Z] CLI Version:   14.23.0
+[debug] [2025-12-04T18:17:45.708Z] Platform:      win32
+[debug] [2025-12-04T18:17:45.708Z] Node Version:  v24.11.0
+[debug] [2025-12-04T18:17:45.708Z] Time:          Thu Dec 04 2025 15:17:45 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2025-12-04T18:17:45.708Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-12-04T18:17:45.825Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-12-04T18:17:45.825Z] > authorizing via signed-in user (marialuizaelias04@gmail.com)
+[debug] [2025-12-04T18:17:45.825Z] [iam] checking project safeway-dev-8542d for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-12-04T18:17:45.826Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:17:45.826Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:17:45.827Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/safeway-dev-8542d:testIamPermissions [none]
+[debug] [2025-12-04T18:17:45.827Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/safeway-dev-8542d:testIamPermissions x-goog-quota-user=projects/safeway-dev-8542d
+[debug] [2025-12-04T18:17:45.827Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/safeway-dev-8542d:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-12-04T18:17:46.710Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/safeway-dev-8542d:testIamPermissions 200
+[debug] [2025-12-04T18:17:46.710Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/safeway-dev-8542d:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-12-04T18:17:46.710Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:17:46.710Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:17:46.710Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d [none]
+[debug] [2025-12-04T18:17:47.130Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d 200
+[debug] [2025-12-04T18:17:47.130Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d {"projectId":"safeway-dev-8542d","projectNumber":"666685520949","displayName":"safeway-dev","name":"projects/safeway-dev-8542d","resources":{"hostingSite":"safeway-dev-8542d"},"state":"ACTIVE","etag":"1_9e16c6fc-55c8-4c61-b9ff-acd61c919462"}
+[debug] [2025-12-04T18:17:53.638Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:17:53.639Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:17:53.639Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites pageToken=&pageSize=10
+[debug] [2025-12-04T18:17:54.736Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites 200
+[debug] [2025-12-04T18:17:54.737Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites {"sites":[{"name":"projects/safeway-dev-8542d/sites/safeway-dev-8542d","defaultUrl":"https://safeway-dev-8542d.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2025-12-04T18:17:54.739Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:17:54.739Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:17:54.739Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites 
+[debug] [2025-12-04T18:17:54.992Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites 200
+[debug] [2025-12-04T18:17:54.992Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites {"sites":[{"name":"projects/safeway-dev-8542d/sites/safeway-dev-8542d","defaultUrl":"https://safeway-dev-8542d.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2025-12-04T18:17:54.992Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:17:54.993Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:17:54.993Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d/webApps/-/config [none]
+[debug] [2025-12-04T18:17:55.871Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d/webApps/-/config 200
+[debug] [2025-12-04T18:17:55.872Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d/webApps/-/config {"projectId":"safeway-dev-8542d","appId":"1:666685520949:web:6872e05e2ff94299e8c57c","storageBucket":"safeway-dev-8542d.firebasestorage.app","apiKey":"AIzaSyAykEbRJWi-RZTn3afIJnczkYoU7oh3fWE","authDomain":"safeway-dev-8542d.firebaseapp.com","messagingSenderId":"666685520949","measurementId":"G-BL3992JTHB","projectNumber":"666685520949","version":"2"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-12-04T18:18:06.390Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:18:06.390Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:18:06.390Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites/safeway-dev-8542d [none]
+[debug] [2025-12-04T18:18:07.395Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites/safeway-dev-8542d 200
+[debug] [2025-12-04T18:18:07.395Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites/safeway-dev-8542d {"name":"projects/safeway-dev-8542d/sites/safeway-dev-8542d","defaultUrl":"https://safeway-dev-8542d.web.app","type":"DEFAULT_SITE"}
+[info]   ▲ Next.js 14.2.33
+
+[info]   - Environments: .env.local
+
+
+[info]    Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully
+
+[info]    Linting and checking validity of types ...
+
+[info]    Collecting page data ...
+
+[info]    Generating static pages (0/13) ...
+
+[info]  ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/dashboard". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at s (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:3:735720)
+    at c (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:3:746742)
+    at l (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\app\dashboard\page.js:1:4258)
+    at nj (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:46252)
+    at nM (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:47572)
+    at nN (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64547)
+    at nI (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:47011)
+    at nM (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:47718)
+    at nM (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:61547)
+    at nN (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64547)
+
+Error occurred prerendering page "/dashboard". Read more: https://nextjs.org/docs/messages/prerender-error
+
+
+[info]    Generating static pages (3/13) 
+
+[info] D [FirebaseError]: Firebase: Error (auth/invalid-api-key).
+    at y (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:82340)
+    at C (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:82388)
+    at i.instanceFactory (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:135398)
+    at o.getOrInitializeService (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:67098)
+    at o.initialize (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:66473)
+    at eP (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:118990)
+    at tT (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:136067)
+    at 72838 (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\app\dashboard\users\page.js:1:7640)
+    at Object.t [as require] (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\webpack-runtime.js:1:128)
+    at require (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:16:18839) {
+  code: 'auth/invalid-api-key',
+  customData: { appName: '[DEFAULT]' },
+  digest: '3831567061'
+}
+
+[info]    Generating static pages (6/13) 
+
+[info]    Generating static pages (9/13) 
+
+[info] 
+Error occurred prerendering page "/dashboard/users". Read more: https://nextjs.org/docs/messages/prerender-error
+
+FirebaseError: Firebase: Error (auth/invalid-api-key).
+    at y (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:82340)
+    at C (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:82388)
+    at i.instanceFactory (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:135398)
+    at o.getOrInitializeService (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:67098)
+    at o.initialize (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:66473)
+    at eP (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:118990)
+    at tT (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\chunks\324.js:5:136067)
+    at 72838 (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\app\dashboard\users\page.js:1:7640)
+    at Object.t [as require] (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\webpack-runtime.js:1:128)
+    at require (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:16:18839)
+
+[info]  ✓ Generating static pages (13/13)
+
+[info] 
+
+[info] > Export encountered errors on following paths:
+	/dashboard/page: /dashboard
+	/dashboard/users/page: /dashboard/users
+
+[debug] [2025-12-04T18:18:28.187Z] Error: ENOENT: no such file or directory, open 'C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\export-marker.json'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-12-04T18:20:40.897Z] ----------------------------------------------------------------------
+[debug] [2025-12-04T18:20:40.902Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\06095825261\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2025-12-04T18:20:40.902Z] CLI Version:   14.23.0
+[debug] [2025-12-04T18:20:40.902Z] Platform:      win32
+[debug] [2025-12-04T18:20:40.903Z] Node Version:  v24.11.0
+[debug] [2025-12-04T18:20:40.903Z] Time:          Thu Dec 04 2025 15:20:40 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2025-12-04T18:20:40.903Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-12-04T18:20:41.030Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-12-04T18:20:41.030Z] > authorizing via signed-in user (marialuizaelias04@gmail.com)
+[debug] [2025-12-04T18:20:41.030Z] [iam] checking project safeway-dev-8542d for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-12-04T18:20:41.032Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:20:41.032Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:20:41.032Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/safeway-dev-8542d:testIamPermissions [none]
+[debug] [2025-12-04T18:20:41.033Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/safeway-dev-8542d:testIamPermissions x-goog-quota-user=projects/safeway-dev-8542d
+[debug] [2025-12-04T18:20:41.033Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/safeway-dev-8542d:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-12-04T18:20:42.175Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/safeway-dev-8542d:testIamPermissions 200
+[debug] [2025-12-04T18:20:42.175Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/safeway-dev-8542d:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-12-04T18:20:42.176Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:20:42.176Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:20:42.176Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d [none]
+[debug] [2025-12-04T18:20:42.571Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d 200
+[debug] [2025-12-04T18:20:42.571Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d {"projectId":"safeway-dev-8542d","projectNumber":"666685520949","displayName":"safeway-dev","name":"projects/safeway-dev-8542d","resources":{"hostingSite":"safeway-dev-8542d"},"state":"ACTIVE","etag":"1_9e16c6fc-55c8-4c61-b9ff-acd61c919462"}
+[debug] [2025-12-04T18:20:50.341Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:20:50.341Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:20:50.341Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites pageToken=&pageSize=10
+[debug] [2025-12-04T18:20:51.359Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites 200
+[debug] [2025-12-04T18:20:51.360Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites {"sites":[{"name":"projects/safeway-dev-8542d/sites/safeway-dev-8542d","defaultUrl":"https://safeway-dev-8542d.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2025-12-04T18:20:51.360Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:20:51.361Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:20:51.361Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites 
+[debug] [2025-12-04T18:20:51.619Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites 200
+[debug] [2025-12-04T18:20:51.619Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites {"sites":[{"name":"projects/safeway-dev-8542d/sites/safeway-dev-8542d","defaultUrl":"https://safeway-dev-8542d.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2025-12-04T18:20:51.620Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:20:51.620Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:20:51.620Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d/webApps/-/config [none]
+[debug] [2025-12-04T18:20:52.551Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d/webApps/-/config 200
+[debug] [2025-12-04T18:20:52.551Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/safeway-dev-8542d/webApps/-/config {"projectId":"safeway-dev-8542d","appId":"1:666685520949:web:6872e05e2ff94299e8c57c","storageBucket":"safeway-dev-8542d.firebasestorage.app","apiKey":"AIzaSyAykEbRJWi-RZTn3afIJnczkYoU7oh3fWE","authDomain":"safeway-dev-8542d.firebaseapp.com","messagingSenderId":"666685520949","measurementId":"G-BL3992JTHB","projectNumber":"666685520949","version":"2"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-12-04T18:21:03.337Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:21:03.337Z] Checked if tokens are valid: true, expires at: 1764875618217
+[debug] [2025-12-04T18:21:03.338Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites/safeway-dev-8542d [none]
+[debug] [2025-12-04T18:21:04.308Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites/safeway-dev-8542d 200
+[debug] [2025-12-04T18:21:04.308Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/safeway-dev-8542d/sites/safeway-dev-8542d {"name":"projects/safeway-dev-8542d/sites/safeway-dev-8542d","defaultUrl":"https://safeway-dev-8542d.web.app","type":"DEFAULT_SITE"}
+[info]   ▲ Next.js 14.2.33
+
+[info]   - Environments: .env.local
+
+
+[info]    Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully
+
+[info]    Linting and checking validity of types ...
+
+[info]    Collecting page data ...
+
+[info] PageNotFoundError: Cannot find module for page: /dashboard/admin
+    at getPagePath (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:94:15)
+    at requirePage (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:84
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async loadComponentsImpl (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:26)
+    at async C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\build\utils.js:1116:32
+    at async Span.traceAsyncFn (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\trace\trace.js:154:20) {
+  code: 'ENOENT'
+}
+
+[info] PageNotFoundError: Cannot find module for page: /verificar-alertas
+    at getPagePath (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:94:15)
+    at requirePage (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:84
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async loadComponentsImpl (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:26)
+    at async C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\build\utils.js:1116:32
+    at async Span.traceAsyncFn (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\trace\trace.js:154:20) {
+  code: 'ENOENT'
+}
+PageNotFoundError: Cannot find module for page: /sair
+    at getPagePath (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:94:15)
+    at requirePage (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:84
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async loadComponentsImpl (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:26)
+    at async C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\build\utils.js:1116:32
+    at async Span.traceAsyncFn (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\trace\trace.js:154:20) {
+  code: 'ENOENT'
+}
+PageNotFoundError: Cannot find module for page: /map
+    at getPagePath (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:94:15)
+    at requirePage (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:84
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async loadComponentsImpl (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:26)
+    at async C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\build\utils.js:1116:32
+    at async Span.traceAsyncFn (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\trace\trace.js:154:20) {
+  code: 'ENOENT'
+}
+PageNotFoundError: Cannot find module for page: /login
+    at getPagePath (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:94:15)
+    at requirePage (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:84
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async loadComponentsImpl (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:26)
+    at async C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\build\utils.js:1116:32
+    at async Span.traceAsyncFn (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\trace\trace.js:154:20) {
+  code: 'ENOENT'
+}
+PageNotFoundError: Cannot find module for page: /
+    at getPagePath (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:94:15)
+    at requirePage (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:84
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async loadComponentsImpl (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:26)
+    at async C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\build\utils.js:1116:32
+    at async Span.traceAsyncFn (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\trace\trace.js:154:20) {
+  code: 'ENOENT'
+}
+
+[info] PageNotFoundError: Cannot find module for page: /dashboard/alerts
+    at getPagePath (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:94:15)
+    at requirePage (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:84
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async loadComponentsImpl (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:26)
+    at async C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\build\utils.js:1116:32
+    at async Span.traceAsyncFn (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\trace\trace.js:154:20) {
+  code: 'ENOENT'
+}
+PageNotFoundError: Cannot find module for page: /dashboard/lista-alertas
+    at getPagePath (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:94:15)
+    at requirePage (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js:99:22)
+    at C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:84
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async loadComponentsImpl (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js:103:26)
+    at async C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\build\utils.js:1116:32
+    at async Span.traceAsyncFn (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\trace\trace.js:154:20) {
+  code: 'ENOENT'
+}
+Error: Cannot find module './324.js'
+Require stack:
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\webpack-runtime.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\app\_not-found\page.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\build\utils.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\build\worker.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\jest-worker\processChild.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1420:15)
+    at C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)
+    at Module._load (node:internal/modules/cjs/loader:1226:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:244:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1503:12)
+    at mod.require (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\.next\\server\\app\\_not-found\\page.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\node_modules\\next\\dist\\server\\load-components.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\node_modules\\next\\dist\\build\\utils.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\node_modules\\next\\dist\\build\\worker.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\node_modules\\next\\dist\\compiled\\jest-worker\\processChild.js'
+  ]
+}
+
+[info] Error: Cannot find module './324.js'
+Require stack:
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\webpack-runtime.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\app\dashboard\users\page.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\build\utils.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\build\worker.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\jest-worker\processChild.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1420:15)
+    at C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)
+    at Module._load (node:internal/modules/cjs/loader:1226:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:244:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1503:12)
+    at mod.require (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\.next\\server\\app\\dashboard\\users\\page.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\node_modules\\next\\dist\\server\\load-components.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\node_modules\\next\\dist\\build\\utils.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\node_modules\\next\\dist\\build\\worker.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\node_modules\\next\\dist\\compiled\\jest-worker\\processChild.js'
+  ]
+}
+
+[info] unhandledRejection Error: Cannot find module './682.js'
+Require stack:
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\webpack-runtime.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\server\pages\_document.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\load-components.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\build\utils.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\build\worker.js
+- C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\compiled\jest-worker\processChild.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1420:15)
+    at C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)
+    at Module._load (node:internal/modules/cjs/loader:1226:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:244:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1503:12)
+    at mod.require (C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16) {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\.next\\server\\pages\\_document.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\node_modules\\next\\dist\\server\\load-components.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\node_modules\\next\\dist\\build\\utils.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\node_modules\\next\\dist\\build\\worker.js',
+    'C:\\Users\\43397058880\\Documents\\git\\Web_Admin_SafeWay\\node_modules\\next\\dist\\compiled\\jest-worker\\processChild.js'
+  ]
+}
+
+[debug] [2025-12-04T18:21:27.012Z] Error: ENOENT: no such file or directory, open 'C:\Users\43397058880\Documents\git\Web_Admin_SafeWay\.next\export-marker.json'
+[error] 
+[error] Error: An unexpected error has occurred.
