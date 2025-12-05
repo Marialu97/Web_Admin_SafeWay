@@ -56,7 +56,7 @@ const AddAlertPage = () => {
       setTitulo('');
       setDescricao('');
       setTipo('outro');
-      setRisco('Alto');
+      setRisco('alto');
       setLatitude('');
       setLongitude('');
       setUserId('');
@@ -120,10 +120,10 @@ const AddAlertPage = () => {
           onChange={(e) => setRisco(e.target.value)}
           className="border p-2 w-full rounded"
         >
-          <option value="Baixo">Baixo</option>
-          <option value="Médio">Médio</option>
-          <option value="Alto">Alto</option>
-          <option value="Crítico">Crítico</option>
+          <option value="baixo">Baixo</option>
+          <option value="medio">Médio</option>
+          <option value="alto">Alto</option>
+          <option value="critico">Crítico</option>
         </select>
       </div>
 

@@ -73,7 +73,7 @@ export default function ListaAlertasPage() {
           descricao: d.descricao,
           latitude: d.latitude,
           longitude: d.longitude,
-          risco: d.risco || mapOldRisco(d.nivelRisco),
+          risco: (d.risco || mapOldRisco(d.nivelRisco)).toLowerCase(),
           createdAt: d.createdAt?.toDate() || new Date(),
         };
       }) as Alert[];
@@ -210,30 +210,32 @@ export default function ListaAlertasPage() {
                     </td>
                     <td className="py-2 px-4 border-b">{alert.latitude || 'N/A'}</td>
                     <td className="py-2 px-4 border-b">{alert.longitude || 'N/A'}</td>
-                    <td className="py-2 px-4 border-b text-center space-x-2">
-                      {/* ✏️ editar */}
-                      <button
-                        onClick={() => handleEdit(alert)}
-                        className="bg-yellow-400 hover:bg-yellow-500 text-white px-2 py-1 rounded"
-                      >
-                        Editar
-                      </button>
+                    <td className="py-2 px-4 border-b text-center">
+                      <div className="flex justify-center space-x-2">
+                        {/* ✏️ editar */}
+                        <button
+                          onClick={() => handleEdit(alert)}
+                          className="bg-yellow-400 hover:bg-yellow-500 text-white px-2 py-1 rounded"
+                        >
+                          Editar
+                        </button>
 
-                      {/* 🗑️ excluir */}
-                      <button
-                        onClick={() => handleDelete(alert.id)}
-                        className="bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded"
-                      >
-                        Excluir
-                      </button>
+                        {/* 🗑️ excluir */}
+                        <button
+                          onClick={() => handleDelete(alert.id)}
+                          className="bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded"
+                        >
+                          Excluir
+                        </button>
 
-                      {/* 🔎 ver no mapa */}
-                      <button
-                        onClick={() => handleViewOnMap(alert.latitude, alert.longitude)}
-                        className="bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded"
-                      >
-                        Ver no mapa
-                      </button>
+                        {/* 🔎 ver no mapa */}
+                        <button
+                          onClick={() => handleViewOnMap(alert.latitude, alert.longitude)}
+                          className="bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded"
+                        >
+                          Ver no mapa
+                        </button>
+                      </div>
                     </td>
                   </>
                 )}
